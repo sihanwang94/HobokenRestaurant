@@ -14,19 +14,49 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var configDB = require('./config/database.js');
+const exphbs = require("express-handlebars");
+const Handlebars = require("handlebars");
 
+const handlebarsInstance = exphbs.create({
+    defaultLayout: "main",
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+      asJSON: (obj, spacing) => {
+        if (typeof spacing === "number")
+          return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
+  
+        return new Handlebars.SafeString(JSON.stringify(obj));
+      }
+    }
+  });
+  
+  const rewriteUnsupportedBrowserMethods = (req, res, next) => {
+    // If the user posts to the server with a property called _method, rewrite the request's method
+    // To be that method; so if they post _method=PUT you can now allow browsers to POST to a route that gets
+    // rewritten in this middleware to a PUT route
+    if (req.body && req.body._method) {
+      req.method = req.body._method;
+      delete req.body._method;
+    }
+  
+    // let the next middleware run:
+    next();
+  };
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
+
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(rewriteUnsupportedBrowserMethods);
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+app.engine("handlebars", handlebarsInstance.engine);
+app.set("view engine", "handlebars");
 
 // required for passport
 app.use(session({
