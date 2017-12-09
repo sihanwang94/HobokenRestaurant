@@ -19,8 +19,8 @@ module.exports = function(app, passport) {
             req.logout();
             res.redirect('/');
         });
-        app.get('/restaurant', function(req, res) {
-            res.render('restaurant');
+        app.get('/restaurants', function(req, res) {
+            res.render('restaurants');
         });
     
     // =============================================================================
