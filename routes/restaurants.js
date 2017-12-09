@@ -29,6 +29,7 @@ router.get("/", async (req,res)=>{
 //     }   
 // });
 
+
 router.get("/all", async (req,res)=>{
     try{
         const getData=await restaurantsData.getAll();
