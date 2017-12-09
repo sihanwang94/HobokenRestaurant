@@ -2,26 +2,34 @@ const router=require("express").Router();
 const data=require("../data");
 const restaurantsData=data.restaurants;
 const xss=require("xss");
-
  
-router.get("/", async (req,res)=>{
-    try{
-        const getData=await restaurantsData.getAllRestaurants();
-        res.json(getData);
-    }catch(e){
-        console.log(e);
-        res.status(500).json({error: e});
-    }   
-});
 // router.get("/", async (req,res)=>{
 //     try{
-//         const restInfo=await restaurantsData.getAllRestaurants();
-//         res.render('restauarnts.handlebars',{name:restInfo.R_name});
+//         const getData=await restaurantsData.getAllRestaurants();
+//         res.json(getData);
 //     }catch(e){
 //         console.log(e);
 //         res.status(500).json({error: e});
 //     }   
 // });
+
+router.get("/", async (req,res)=>{
+    try{
+        const theRestaurants=await restaurantsData.getAllRestaurants();
+    
+        for(let i=0;i<theRestaurants.length;i++){
+            R_name=theRestaurants[i].R_name
+        }
+        res.render('./restaurants', {
+            name:R_name
+        });
+        
+    }catch(e){
+        console.log(e);
+        res.redirect('./login');
+
+    }   
+});
 
 router.get("/all", async (req,res)=>{
     try{
