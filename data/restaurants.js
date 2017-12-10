@@ -57,9 +57,7 @@ async function getSome(){
 
 //get all restaurants and the reviews
 async function getRating(){
-    console.log("----------------");
-    
-    
+    console.log("----------------");   
 } 
 
 

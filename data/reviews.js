@@ -40,6 +40,7 @@ async function getAverageLike(restaurantId){
 async function classifyCuisines(){
     const restaurantsCollection=await requiredRestaurant();
     const all=await await restaurantsCollection.find({}).toArray();
+   
     let sandwiches=await restaurantsCollection.find({'R_cuisine':{'$all':['Sandwiches']}}).toArray(); 
     let italian=await restaurantsCollection.find({'R_cuisine':{'$all':['Italian']}}).toArray();
     let coffeeAndTea=await restaurantsCollection.find({'R_cuisine':{'$all':['Coffee & Tea']}}).toArray();
@@ -49,9 +50,66 @@ async function classifyCuisines(){
     let delis=await restaurantsCollection.find({'R_cuisine':{'$all':['Delis']}}).toArray();
     let pizza=await restaurantsCollection.find({'R_cuisine':{'$all':['Pizza']}}).toArray();
     let bars=await restaurantsCollection.find({'R_cuisine':{'$all':[/Bars.*/]}}).toArray();
-    return bars;   
+    let data=[sandwiches,italian,coffeeAndTea,branch,american,chinese,delis,pizza,bars]
+    return data;   
 }
 //classifyCuisines();
+
+async function getSandwiches(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let sandwiches=await restaurantsCollection.find({'R_cuisine':{'$all':['Sandwiches']}}).toArray(); 
+    return sandwiches;   
+}
+async function getCoffeeAndTea(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let coffeeAndTea=await restaurantsCollection.find({'R_cuisine':{'$all':['Coffee & Tea']}}).toArray();
+    return coffeeAndTea;   
+}
+async function getItalian(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let italian=await restaurantsCollection.find({'R_cuisine':{'$all':['Italian']}}).toArray(); 
+    return italian;   
+}
+async function getBranch(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let branch=await restaurantsCollection.find({'R_cuisine':{'$all':['Breakfast & Brunch']}}).toArray();
+    return branch;   
+}
+async function getAmerican(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let american=await restaurantsCollection.find({'R_cuisine':{'$all':[/American/]}}).toArray();
+    return american;   
+}
+async function getChinese(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let chinese=await restaurantsCollection.find({'R_cuisine':{'$all':['Chinese']}}).toArray();
+    return chinese;   
+}
+async function getDelis(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let delis=await restaurantsCollection.find({'R_cuisine':{'$all':['Delis']}}).toArray();
+    return delis;   
+}
+async function getPizza(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let pizza=await restaurantsCollection.find({'R_cuisine':{'$all':['Pizza']}}).toArray();
+    return pizza;   
+}
+async function getBars(){
+    const restaurantsCollection=await requiredRestaurant();
+    const all=await restaurantsCollection.find({}).toArray();
+    let bars=await restaurantsCollection.find({'R_cuisine':{'$all':[/Bars/]}}).toArray();
+    return bars;   
+}
+
 
 async function mappingCuisines(){
     const allCuisines=await this.gatherCuisines();
@@ -99,4 +157,4 @@ async function addReview(restaurantId,name,like,review) {
 }
 
 
-module.exports={getReviewsByRestaurantId,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview};
+module.exports={getReviewsByRestaurantId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview};

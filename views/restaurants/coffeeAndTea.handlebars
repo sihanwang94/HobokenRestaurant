@@ -26,19 +26,15 @@
 
     <div class="container">
       <div class="row" >
-           <h2>Cuisine</h2> 
-          {{#each theRestaurants}}
-            {{#each this}}
-              <div class="col-md-4">
-                  <h2>{{this.R_name}}</h2>
-                  <p>{{this.R_href}}</p>
-                  <p>{{this.R_location}}</p>
-                  <p>{{this.R_cuisine}}</p>
-                  <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
-              </div>
-            {{/each}}
-          {{/each}}
-
+          {{#each coffeeAndTea}}
+           <div class="col-md-4">
+              <h2>{{this.R_name}}</h2>
+              <p>{{this.R_href}}</p>
+              <p>{{this.R_location}}</p>
+              <p>{{this.R_cuisine}}</p>
+              <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+           </div>
+          {{/each}}    
       </div>   
       <hr>
 
