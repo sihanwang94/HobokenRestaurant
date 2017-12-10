@@ -56,36 +56,37 @@ async function getSix(){
 }
 
 //get all restaurants and the reviews
-async function getRestaurantsAndReviews(){
+async function getRating(){
     const restaurantsCollection=await restaurants();
     const allRestaurants=await restaurantsCollection.find({}).toArray();
     let resultsList=[];
-    for(let i=0;i<allRestaurants.length;i++){
-        let reviewsList=[];
-        for(let j=0;j<allRestaurants[i].R_review.length;j++){
-            let theReview={
-                reviewer_name:allRestaurants[i].R_review[j].reviewer_name,
-                reviewer_like:allRestaurants[i].R_review[j].reviewer_like,
-                review:allRestaurants[i].R_review[j].review
-            }
-            reviewsList.push(theReview);
-            var averageLike=await reviews.getAverageLike(allRestaurants[i]._id);
-        }
+    for(let i=0;i<3;i++){
+        // let list=[];
+        // for(let j=0;j<allRestaurants[i].R_review.length;j++){
+        //     let review={
+        //         reviewer_name:allRestaurants[i].R_review[j].reviewer_name,
+        //         reviewer_like:allRestaurants[i].R_review[j].reviewer_like,
+        //         review:allRestaurants[i].R_review[j].review
+        //     }  
+        //     list.push(review);
+        // }
         let content={
-            _id:allRestaurants[i]._id,
-            R_averageLike:averageLike,
-            R_review:reviewsList
-            
+            R_cuisine:allRestaurants[i].R_cuisine,
+            R_name:allRestaurants[i].R_name,
+            R_href:allRestaurants[i].R_href,
+            R_location:allRestaurants[i].R_location,
+            // R_review:list[0].review
         }
         resultsList.push(content);
     }
-    return resultsList; 
+    return resultsList;
+    
 } 
 
 
 //get the restaurant 
 async function getRestaurantById(id){
-    if(id===undefined) throw "Please provide an id.";
+    if(id===undefined || id.length != 12 && id.length != 24) throw "Please provide an id.";
     const restaurantsCollection=await restaurants();
     const theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(id)});
     if(!theRestaurant || theRestaurant===null) throw "No restaurant with that name.";
@@ -159,4 +160,4 @@ async function updateRestaurant(id,suppliedChange){
 }
 
 
-module.exports={getAll,getSix,getAllRestaurants,getRestaurantsAndReviews,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};
+module.exports={getAll,getSix,getAllRestaurants,getRating,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};

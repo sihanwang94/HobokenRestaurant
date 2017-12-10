@@ -7,7 +7,27 @@
     <div class="jumbotron">
       <div class="container">
         <h2>Search Your Restaurants in Hoboken</h2>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p>This is a template for a simple marketing or informational website. </p>
+        <div class="row">
+            <div class="smallContainer">
+                <img src="" class="bodyImage">
+                <h3><a class="title" href="#">Cuisine</a></h3>
+                <p>This is a template for a simple marketing or informational website.</p>
+            </div>
+
+            <div class="smallContainer">
+                <img src="" class="bodyImage">
+                <h3><a class="title" href="/restaurants/rating">Rating</a></h3>
+                <p>This is a template for a simple marketing or informational website. </p>
+            </div>
+
+            <div class="smallContainer">
+                <img src="" class="bodyImage">
+                <h3><a class="title" href="#">Nearby</a></h3>
+                <p>This is a template for a simple marketing or informational website. </p>
+            </div>
+
+        </div>
       </div>
     </div>
 
@@ -17,9 +37,8 @@
            <div class="col-md-4">
               <h2>{{this.R_name}}</h2>
               <p>{{this.R_href}}</p>
-              
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>     
+              <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a>   
            </div>
           {{/each}}    
       </div>   

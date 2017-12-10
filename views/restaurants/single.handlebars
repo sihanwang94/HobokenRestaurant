@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,16 +27,18 @@
 
     <div class="container">
       <div class="row" >
-          {{#each theRestaurants}}
            <div class="col-md-4">
-              <h2>{{this.R_name}}</h2>
-              <p>{{this.R_href}}</p>
-              <p>{{this.R_location}}</p>
-              <p>{{this.R_cuisine}}</p>
-              <p>{{this.R_review}} </p>
-              <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+              <h2>{{restaurant.R_name}}</h2>
+              <p>{{restaurant.R_href}}</p>
+              <p>{{restaurant.R_location}}</p>
+              <p>{{restaurant.R_cuisine}}</p>
+              
+              {{#each restaurant.R_review}}
+                <p>{{this.reviewer_name}} </p>
+                <p>{{this.reviewer_like}} </p>
+                <p>{{this.review}} </p>
+              {{/each}}  
            </div>
-          {{/each}}    
       </div>   
       <hr>
 
