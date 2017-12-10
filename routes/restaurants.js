@@ -19,6 +19,7 @@ router.get("/", async (req,res)=>{
         const theRestaurants=await restaurantsData.getSix();
         res.render('./restaurants/restaurants', {
             theRestaurants:theRestaurants
+
         });   
     }catch(e){
         console.log(e);
