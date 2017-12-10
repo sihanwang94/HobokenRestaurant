@@ -22,7 +22,7 @@ router.get("/", async (req,res)=>{
         });   
     }catch(e){
         console.log(e);
-        res.redirect('./restaurants/restaurants');
+        res.redirect('/restaurants');
     }   
 });
 router.get("/all", async (req,res)=>{
@@ -32,26 +32,30 @@ router.get("/all", async (req,res)=>{
             all:all
         });
     }catch(e){
-        res.redirect('./restaurants/restaurants');
+        res.redirect('/restaurants');
     }   
 });
 
 router.get("/:id", async (req,res)=>{
     try{
         const restaurant=await restaurantsData.getRestaurantById(req.params.id);
-        res.render('./restaurants/:id', {
+        console.log(restaurant.R_name);
+        res.render('../views/restaurants/single', {
             restaurant:restaurant
         });
     }catch(e){
         console.log(e);
-        res.status(404).json({error:"The restaurant not found."});
+        res.redirect('/restaurants');
     }
 });
 
-router.get("/restaurantsAndReviews", async (req,res)=>{
+router.get("/rating", async (req,res)=>{
     try{
-        const getData=await restaurantsData.getRestaurantsAndReviews();
-        res.json(getData);
+        const restInfo=await restaurantsData.getRating();
+        console.log(restInfo);
+        res.render('./restaurants/rating}', {
+            restInfo:restInfo
+        });
     }catch(e){
         console.log(e);
         res.status(404).json({error:"The restaurant not found."});
