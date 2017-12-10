@@ -27,6 +27,61 @@ async function getAllRestaurants(){
     return resultsList; 
 }
 
+//get six restaurants to show in the main page
+async function getSix(){
+    const restaurantsCollection=await restaurants();
+    const allRestaurants=await restaurantsCollection.find({}).toArray();
+    let resultsList=[];
+    for(let i=0;i<6;i++){
+        let list=[];
+        for(let j=0;j<allRestaurants[i].R_review.length;j++){
+            let review={
+                reviewer_name:allRestaurants[i].R_review[j].reviewer_name,
+                reviewer_like:allRestaurants[i].R_review[j].reviewer_like,
+                review:allRestaurants[i].R_review[j].review
+            }  
+            list.push(review);
+        }
+        let content={
+            _id:allRestaurants[i]._id,
+            R_cuisine:allRestaurants[i].R_cuisine,
+            R_name:allRestaurants[i].R_name,
+            R_href:allRestaurants[i].R_href,
+            R_location:allRestaurants[i].R_location,
+            R_review:list[0].review
+        }
+        resultsList.push(content);
+    }
+    return resultsList; 
+}
+
+//get all restaurants and the reviews
+async function getRestaurantsAndReviews(){
+    const restaurantsCollection=await restaurants();
+    const allRestaurants=await restaurantsCollection.find({}).toArray();
+    let resultsList=[];
+    for(let i=0;i<allRestaurants.length;i++){
+        let reviewsList=[];
+        for(let j=0;j<allRestaurants[i].R_review.length;j++){
+            let theReview={
+                reviewer_name:allRestaurants[i].R_review[j].reviewer_name,
+                reviewer_like:allRestaurants[i].R_review[j].reviewer_like,
+                review:allRestaurants[i].R_review[j].review
+            }
+            reviewsList.push(theReview);
+            var averageLike=await reviews.getAverageLike(allRestaurants[i]._id);
+        }
+        let content={
+            _id:allRestaurants[i]._id,
+            R_averageLike:averageLike,
+            R_review:reviewsList
+            
+        }
+        resultsList.push(content);
+    }
+    return resultsList; 
+} 
+
 
 //get the restaurant 
 async function getRestaurantById(id){
@@ -103,13 +158,5 @@ async function updateRestaurant(id,suppliedChange){
     return await this.getRestaurantById(id);  
 }
 
-//Deletes the restaurant
-async function deleteRestaurant(id){
-    if(!id) throw "No id provided.";
-    const restaurantsCollection=await restaurants();
-    const deleteInfo=restaurantsCollection.removeOne({_id:ObjectId(id)});
-    if(deleteInfo.deleteCount==0) throw "Could not delete restaurant.";
-    return "{delete restaurant: true}";
-}
 
-module.exports={getAll,getAllRestaurants,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant,deleteRestaurant};
+module.exports={getAll,getSix,getAllRestaurants,getRestaurantsAndReviews,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};

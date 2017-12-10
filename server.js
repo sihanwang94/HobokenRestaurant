@@ -17,6 +17,7 @@ var configDB = require('./config/database.js');
 const exphbs = require("express-handlebars");
 const Handlebars = require("handlebars");
 
+
 const handlebarsInstance = exphbs.create({
     defaultLayout: "main",
     // Specify helpers which are only registered on this instance.
@@ -58,6 +59,7 @@ app.use(rewriteUnsupportedBrowserMethods);
 app.engine("handlebars", handlebarsInstance.engine);
 app.set("view engine", "handlebars");
 
+
 // required for passport
 app.use(session({
     secret: 'ilovescotchscotchyscotchscotch', // session secret
@@ -71,6 +73,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./routes/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./routes/index.js')(app, passport);
+
 
 // launch ======================================================================
 app.listen(port);
