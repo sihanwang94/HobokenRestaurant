@@ -39,7 +39,7 @@ module.exports = function(app, passport) {
         // Step to Private Restaurant Page
         app.get('/restaurant',require('connect-ensure-login').ensureLoggedIn('/login'), 
         function(req, res) {
-            res.render('restaurant');
+            res.render('restaurant',{ user: req.user });
         });
     
     // =============================================================================
