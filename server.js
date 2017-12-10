@@ -17,10 +17,6 @@ var configDB = require('./config/database.js');
 const exphbs = require("express-handlebars");
 const Handlebars = require("handlebars");
 
-var path = require ('path');
-app.use(express.static(path.join(__dirname + '.../public')));
-const configRoutes = require("./routes");
-
 
 const handlebarsInstance = exphbs.create({
     defaultLayout: "main",
@@ -62,6 +58,7 @@ app.use(rewriteUnsupportedBrowserMethods);
 
 app.engine("handlebars", handlebarsInstance.engine);
 app.set("view engine", "handlebars");
+
 
 // required for passport
 app.use(session({

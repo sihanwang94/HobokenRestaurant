@@ -2,47 +2,55 @@ const router=require("express").Router();
 const data=require("../data");
 const restaurantsData=data.restaurants;
 const xss=require("xss");
- 
+
 // router.get("/", async (req,res)=>{
 //     try{
-//         const getData=await restaurantsData.getAllRestaurants();
-//         res.json(getData);
+//         const theRestaurants=await restaurantsData.getAllRestaurants();
+//         res.render('./restaurants/restaurants', {
+//             theRestaurants:theRestaurants
+//         });   
 //     }catch(e){
 //         console.log(e);
-//         res.status(500).json({error: e});
+//         res.redirect('./restaurants/restaurants');
 //     }   
 // });
-
 router.get("/", async (req,res)=>{
     try{
-        const theRestaurants=await restaurantsData.getAllRestaurants();
-    
-        for(let i=0;i<theRestaurants.length;i++){
-            R_name=theRestaurants[i].R_name
-        }
-        res.render('./restaurants', {
-            name:R_name
-        });
-        
+        const theRestaurants=await restaurantsData.getSix();
+        res.render('./restaurants/restaurants', {
+            theRestaurants:theRestaurants
+        });   
     }catch(e){
         console.log(e);
-        res.redirect('./login');
-
+        res.redirect('./restaurants/restaurants');
     }   
 });
-
 router.get("/all", async (req,res)=>{
     try{
-        const getData=await restaurantsData.getAll();
-        res.json(getData);
+        const all=await restaurantsData.getAllRestaurants();
+        res.render('./restaurants/all', {
+            all:all
+        });
     }catch(e){
-        res.status(500).json({error: e});
+        res.redirect('./restaurants/restaurants');
     }   
 });
 
 router.get("/:id", async (req,res)=>{
     try{
-        const getData=await restaurantsData.getRestaurantById(req.params.id);
+        const restaurant=await restaurantsData.getRestaurantById(req.params.id);
+        res.render('./restaurants/:id', {
+            restaurant:restaurant
+        });
+    }catch(e){
+        console.log(e);
+        res.status(404).json({error:"The restaurant not found."});
+    }
+});
+
+router.get("/restaurantsAndReviews", async (req,res)=>{
+    try{
+        const getData=await restaurantsData.getRestaurantsAndReviews();
         res.json(getData);
     }catch(e){
         console.log(e);
