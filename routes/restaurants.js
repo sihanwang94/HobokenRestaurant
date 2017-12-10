@@ -3,20 +3,9 @@ const data=require("../data");
 const restaurantsData=data.restaurants;
 const xss=require("xss");
 
-// router.get("/", async (req,res)=>{
-//     try{
-//         const theRestaurants=await restaurantsData.getAllRestaurants();
-//         res.render('./restaurants/restaurants', {
-//             theRestaurants:theRestaurants
-//         });   
-//     }catch(e){
-//         console.log(e);
-//         res.redirect('./restaurants/restaurants');
-//     }   
-// });
 router.get("/", async (req,res)=>{
     try{
-        const theRestaurants=await restaurantsData.getSix();
+        const theRestaurants=await restaurantsData.getSome();
         res.render('./restaurants/restaurants', {
             theRestaurants:theRestaurants
         });   
@@ -39,13 +28,25 @@ router.get("/all", async (req,res)=>{
 router.get("/:id", async (req,res)=>{
     try{
         const restaurant=await restaurantsData.getRestaurantById(req.params.id);
-        console.log(restaurant.R_name);
+        //console.log(restaurant.R_name);
         res.render('../views/restaurants/single', {
             restaurant:restaurant
         });
     }catch(e){
         console.log(e);
         res.redirect('/restaurants');
+    }
+});
+router.get("/cuisine", async (req,res)=>{
+    try{
+        const restInfo=await restaurantsData.classifyCuisines();
+        console.log(restInfo);
+        res.render('./restaurants/rating}', {
+            restInfo:restInfo
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('./restaurants/all');
     }
 });
 
@@ -58,7 +59,7 @@ router.get("/rating", async (req,res)=>{
         });
     }catch(e){
         console.log(e);
-        res.status(404).json({error:"The restaurant not found."});
+        res.redirect('./restaurants/all');
     }
 });
 

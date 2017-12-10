@@ -28,11 +28,11 @@ async function getAllRestaurants(){
 }
 
 //get six restaurants to show in the main page
-async function getSix(){
+async function getSome(){
     const restaurantsCollection=await restaurants();
     const allRestaurants=await restaurantsCollection.find({}).toArray();
     let resultsList=[];
-    for(let i=0;i<6;i++){
+    for(let i=0;i<12;i++){
         let list=[];
         for(let j=0;j<allRestaurants[i].R_review.length;j++){
             let review={
@@ -57,36 +57,15 @@ async function getSix(){
 
 //get all restaurants and the reviews
 async function getRating(){
-    const restaurantsCollection=await restaurants();
-    const allRestaurants=await restaurantsCollection.find({}).toArray();
-    let resultsList=[];
-    for(let i=0;i<3;i++){
-        // let list=[];
-        // for(let j=0;j<allRestaurants[i].R_review.length;j++){
-        //     let review={
-        //         reviewer_name:allRestaurants[i].R_review[j].reviewer_name,
-        //         reviewer_like:allRestaurants[i].R_review[j].reviewer_like,
-        //         review:allRestaurants[i].R_review[j].review
-        //     }  
-        //     list.push(review);
-        // }
-        let content={
-            R_cuisine:allRestaurants[i].R_cuisine,
-            R_name:allRestaurants[i].R_name,
-            R_href:allRestaurants[i].R_href,
-            R_location:allRestaurants[i].R_location,
-            // R_review:list[0].review
-        }
-        resultsList.push(content);
-    }
-    return resultsList;
+    console.log("----------------");
+    
     
 } 
 
 
 //get the restaurant 
 async function getRestaurantById(id){
-    if(id===undefined || id.length != 12 && id.length != 24) throw "Please provide an id.";
+    if(id !== null && 'number' !== typeof id && (id.length !== 12 && id.length !== 24)) throw "Please provide an id.";
     const restaurantsCollection=await restaurants();
     const theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(id)});
     if(!theRestaurant || theRestaurant===null) throw "No restaurant with that name.";
@@ -160,4 +139,4 @@ async function updateRestaurant(id,suppliedChange){
 }
 
 
-module.exports={getAll,getSix,getAllRestaurants,getRating,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};
+module.exports={getAll,getSome,getAllRestaurants,getRating,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};

@@ -31,11 +31,14 @@ router.get("/averageLike/:restaurantId", async (req,res)=>{
 
 router.get("/cuisine", async (req,res)=>{
     try{
-        const reviewsList=await reviewsData.getRestaurantByCuisine();
-        res.json(reviewsList); 
+        const theRestaurants=await reviewsData.classifyCuisines();
+        console.log(theRestaurants);
+        res.render('../views/restaurants/cuisine', {
+            theRestaurants:theRestaurants
+        });
     }catch(e){
         console.log(e);
-        res.status(404).json({error:"The restaurant not found."});
+        res.redirect('/restaurants');
     } 
 });
 
