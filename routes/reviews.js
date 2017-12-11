@@ -21,31 +21,152 @@ router.get("/restaurant/:restaurantId", async (req,res)=>{
 
 router.get("/averageLike/:restaurantId", async (req,res)=>{
     try{
-        const reviewsList=await reviewsData.getAverageLike(req.params.restaurantId);
-        res.json(reviewsList); 
+        const reviewsList=await reviewsData.getAverageLike(req.params.restaurantId);  
+        res.json(reviewsList);  
     }catch(e){
         console.log(e);
         res.status(404).json({error:"The restaurant not found."});
+    } 
+    try{
+        await reviewsData.getReviewsByRestaurantId(req.params.restaurantId);  
+    }catch(e){
+        console.log(e);
+        res.status(404).json({error:"The restaurant not found."});
+    } 
+
+});
+
+router.get("/rating", async (req,res)=>{
+    try{
+        const theRestaurants=await reviewsData.getRating();
+        res.render('../views/restaurants/rating', {
+            theRestaurants:theRestaurants
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants/restaurants');
     } 
 });
 
 router.get("/cuisine", async (req,res)=>{
     try{
-        const reviewsList=await reviewsData.getRestaurantByCuisine();
-        res.json(reviewsList); 
+        const theRestaurants=await reviewsData.classifyCuisines();
+        res.render('../views/restaurants/cuisine', {
+            theRestaurants:theRestaurants
+        });
     }catch(e){
         console.log(e);
-        res.status(404).json({error:"The restaurant not found."});
+        res.redirect('/restaurants');
     } 
 });
 
-router.get("/:restaurantId/:reviewId", async (req,res)=>{
+// router.get("/:restaurantId/:reviewId", async (req,res)=>{
+//     try{
+//         const reviewInfo=await reviewsData.getReviewByReviewId(req.params.restaurantId,req.params.reviewId);
+//         res.json(reviewInfo);
+//     }catch(e){
+//         console.log(e);
+//         res.status(404).json({error:"The review not found."});
+//     } 
+// });
+
+router.get("/cuisine/sandwiches", async (req,res)=>{
     try{
-        const reviewInfo=await reviewsData.getReviewByReviewId(req.params.restaurantId,req.params.reviewId);
-        res.json(reviewInfo);
+        const sandwiches=await reviewsData.getSandwiches();
+        res.render('../views/restaurants/sandwiches', {
+            sandwiches:sandwiches
+        });
     }catch(e){
         console.log(e);
-        res.status(404).json({error:"The review not found."});
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/italian", async (req,res)=>{
+    try{
+        const italian=await reviewsData.getItalian();
+        res.render('../views/restaurants/italian', {
+            italian:italian
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/coffeeAndTea", async (req,res)=>{
+    try{
+        const coffeeAndTea=await reviewsData.getCoffeeAndTea();
+        res.render('../views/restaurants/coffeeAndTea', {
+            coffeeAndTea:coffeeAndTea
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/branch", async (req,res)=>{
+    try{
+        const branch=await reviewsData.getBranch();
+        res.render('../views/restaurants/branch', {
+            branch:branch
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/american", async (req,res)=>{
+    try{
+        const american=await reviewsData.getAmerican();
+        res.render('../views/restaurants/american', {
+            american:american
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/chinese", async (req,res)=>{
+    try{
+        const chinese=await reviewsData.getChinese();
+        res.render('../views/restaurants/chinese', {
+            chinese:chinese
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/delis", async (req,res)=>{
+    try{
+        const delis=await reviewsData.getDelis();
+        res.render('../views/restaurants/delis', {
+            delis:delis
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/pizza", async (req,res)=>{
+    try{
+        const pizza=await reviewsData.getPizza();
+        res.render('../views/restaurants/pizza', {
+            pizza:pizza
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
+    } 
+});
+router.get("/cuisine/bars", async (req,res)=>{
+    try{
+        const bars=await reviewsData.getBars();
+        res.render('../views/restaurants/bars', {
+            bars:bars
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants');
     } 
 });
 

@@ -9,15 +9,31 @@
         <h2>Search Your Restaurants in Hoboken</h2>
         <p>This is a template for a simple marketing or informational website. </p>
         <div class="row">
-            <div class="smallContainer">
-                <img src="" class="bodyImage">
-                <h3><a class="title" href="#">Cuisine</a></h3>
-                <p>This is a template for a simple marketing or informational website.</p>
+            <div class="container">
+              <h2>Cuisine</h2>
+              <p>This is a template for a simple marketing or informational website.</p>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Cuisine
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="/reviews/cuisine/sandwiches">Sandwiches</a></li>
+                  <li><a href="/reviews/cuisine/italian">Italian</a></li>
+                  <li><a href="/reviews/cuisine/coffeeAndTea">Coffee & Tea</a></li>
+                  <li><a href="/reviews/cuisine/branch">Branch</a></li>
+                  <li><a href="/reviews/cuisine/american">American</a></li>
+                  <li><a href="/reviews/cuisine/chinese">Chinese</a></li>
+                  <li><a href="/reviews/cuisine/delis">Delis</a></li>
+                  <li><a href="/reviews/cuisine/pizza">Pizza</a></li>
+                  <li><a href="/reviews/cuisine/bars">Bars</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/restaurants/all">All Restaurants</a></li>
+                </ul>
+              </div>
             </div>
 
             <div class="smallContainer">
                 <img src="" class="bodyImage">
-                <h3><a class="title" href="/restaurants/rating">Rating</a></h3>
+                <h3><a class="title" href="/reviews/rating">Rating</a></h3>
                 <p>This is a template for a simple marketing or informational website. </p>
             </div>
 
@@ -36,8 +52,10 @@
           {{#each all}}
            <div class="col-md-4">
               <h2>{{this.R_name}}</h2>
-              <p>{{this.R_href}}</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
+              <p>{{this.R_location}}</p>
+              <p>{{this.R_cuisine}}</p>
+              <p>This is a template for a simple marketing or informational website.</p>
               <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a>   
            </div>
           {{/each}}    
