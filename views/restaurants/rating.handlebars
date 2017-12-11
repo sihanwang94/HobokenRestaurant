@@ -26,10 +26,13 @@
 
     <div class="container">
       <div class="row" >
-          {{#each restInfo}}
+          {{#each theRestaurants}}
            <div class="col-md-4">
               <h2>{{this.R_name}}</h2>
-              <p>{{this.R_href}} </p>
+              <p>{{this.R_averageaLike}}</p>
+              <p>{{this.R_location}}</p>
+              <p>{{this.R_cuisine}}</p>
+              <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
               <a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>     
            </div>
           {{/each}}    

@@ -2,12 +2,6 @@ const mongoCollections=require("../config/mongoCollections");
 const restaurants=mongoCollections.restaurants;
 const ObjectId = require('mongodb').ObjectId;
 
-//get all restaurants and all reviews
-async function getAll() {
-    const restaurantsCollection=await restaurants();
-    return await restaurantsCollection.find({}).toArray();  
-} 
-
 //get all restaurants
 async function getAllRestaurants(){
     const restaurantsCollection=await restaurants();
@@ -55,15 +49,10 @@ async function getSome(){
     return resultsList; 
 }
 
-//get all restaurants and the reviews
-async function getRating(){
-    console.log("----------------");   
-} 
-
 
 //get the restaurant 
 async function getRestaurantById(id){
-    if(id !== null && 'number' !== typeof id && (id.length !== 12 && id.length !== 24)) throw "Please provide an id.";
+    if(id === null || (id.length !== 12 && id.length !== 24)) throw "Please provide an id.";
     const restaurantsCollection=await restaurants();
     const theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(id)});
     if(!theRestaurant || theRestaurant===null) throw "No restaurant with that name.";
@@ -137,4 +126,4 @@ async function updateRestaurant(id,suppliedChange){
 }
 
 
-module.exports={getAll,getSome,getAllRestaurants,getRating,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};
+module.exports={getSome,getAllRestaurants,getRestaurantById,getRestaurantByName,addRestaurant,updateRestaurant};

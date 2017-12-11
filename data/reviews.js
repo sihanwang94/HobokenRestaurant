@@ -4,6 +4,7 @@ const restaurants=require("./restaurants");
 const ObjectId = require('mongodb').ObjectId;
 const HashMap = require('hashmap');
 
+
 //filter: get all reviews for the restaurant
 async function getReviewsByRestaurantId(restaurantId) {
     if(restaurantId===undefined) throw "Please provide an restaurantId.";
@@ -26,21 +27,55 @@ async function getReviewsByRestaurantId(restaurantId) {
 
 //filter: get average like for the restaurant
 async function getAverageLike(restaurantId){
-    const allReviews=await this.getReviewsByRestaurantId(restaurantId);
-    if(!allReviews || allReviews.length===0) throw "No review found for the restaurantId"
+    if(restaurantId===undefined) throw "Please provide an restaurantId.";
+    const restaurantsCollection=await requiredRestaurant();
+    const theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(restaurantId)});
+    const allReviews=theRestaurant.R_review;
+    if(!allReviews){
+        throw "No review found for the restaurantId"
+    } 
     let sum=0;
     for(let i=0;i<allReviews.length;i++){
         sum+=allReviews[i].reviewer_like;
     }
     const res=sum/(allReviews.length+1);   
-    return parseFloat((res).toFixed(2));
+    const averageLike= parseFloat((res).toFixed(2));
+    return (allReviews.length!==0)? averageLike:0;
+}
+
+//filter: add rating for all restaurants
+async function addRatingForAll() {
+    const restaurantsCollection=await requiredRestaurant();
+    const allRestaurants=await restaurantsCollection.find({}).toArray();
+    let resultsList=[];
+    for(let i=0;i<allRestaurants.length;i++){
+        const averageLike=await getAverageLike(allRestaurants[i]._id);
+        let list=[];
+        let content={
+            _id:allRestaurants[i]._id,
+            R_averageaLike:averageLike,
+            R_cuisine:allRestaurants[i].R_cuisine,
+            R_name:allRestaurants[i].R_name,
+            R_href:allRestaurants[i].R_href,
+            R_location:allRestaurants[i].R_location
+        }
+        resultsList.push(content);     
+    }
+    return resultsList; 
+}
+
+//filter: sort rating for all restaurants
+async function getRating() {
+   const all=await addRatingForAll();
+   return all.sort( function(a, b){   
+        return parseFloat(a["R_averageaLike" ]) < parseFloat(b["R_averageaLike" ]) ? 1 : parseFloat(a[ "R_averageaLike"]) == parseFloat(b[ "R_averageaLike" ]) ? 0 : -1;   
+    });  
 }
 
 //filter: get the restaurant by cuisine
 async function classifyCuisines(){
     const restaurantsCollection=await requiredRestaurant();
     const all=await await restaurantsCollection.find({}).toArray();
-   
     let sandwiches=await restaurantsCollection.find({'R_cuisine':{'$all':['Sandwiches']}}).toArray(); 
     let italian=await restaurantsCollection.find({'R_cuisine':{'$all':['Italian']}}).toArray();
     let coffeeAndTea=await restaurantsCollection.find({'R_cuisine':{'$all':['Coffee & Tea']}}).toArray();
@@ -110,7 +145,6 @@ async function getBars(){
     return bars;   
 }
 
-
 async function mappingCuisines(){
     const allCuisines=await this.gatherCuisines();
     let HashMap={};
@@ -157,4 +191,4 @@ async function addReview(restaurantId,name,like,review) {
 }
 
 
-module.exports={getReviewsByRestaurantId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview};
+module.exports={addRatingForAll,getRating,getReviewsByRestaurantId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview};

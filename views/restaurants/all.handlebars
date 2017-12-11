@@ -46,7 +46,7 @@
 
             <div class="smallContainer">
                 <img src="" class="bodyImage">
-                <h3><a class="title" href="/reviews/cuisine">Rating</a></h3>
+                <h3><a class="title" href="/reviews/rating">Rating</a></h3>
                 <p>This is a template for a simple marketing or informational website. </p>
             </div>
 
@@ -65,8 +65,10 @@
           {{#each all}}
            <div class="col-md-4">
               <h2>{{this.R_name}}</h2>
-              <p>{{this.R_href}}</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
+              <p>{{this.R_location}}</p>
+              <p>{{this.R_cuisine}}</p>
+              <p>This is a template for a simple marketing or informational website.</p>
               <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a>   
            </div>
           {{/each}}    

@@ -21,11 +21,30 @@ router.get("/restaurant/:restaurantId", async (req,res)=>{
 
 router.get("/averageLike/:restaurantId", async (req,res)=>{
     try{
-        const reviewsList=await reviewsData.getAverageLike(req.params.restaurantId);
-        res.json(reviewsList); 
+        const reviewsList=await reviewsData.getAverageLike(req.params.restaurantId);  
+        res.json(reviewsList);  
     }catch(e){
         console.log(e);
         res.status(404).json({error:"The restaurant not found."});
+    } 
+    try{
+        await reviewsData.getReviewsByRestaurantId(req.params.restaurantId);  
+    }catch(e){
+        console.log(e);
+        res.status(404).json({error:"The restaurant not found."});
+    } 
+
+});
+
+router.get("/rating", async (req,res)=>{
+    try{
+        const theRestaurants=await reviewsData.getRating();
+        res.render('../views/restaurants/rating', {
+            theRestaurants:theRestaurants
+        });
+    }catch(e){
+        console.log(e);
+        res.redirect('/restaurants/restaurants');
     } 
 });
 

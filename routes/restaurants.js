@@ -37,31 +37,7 @@ router.get("/:id", async (req,res)=>{
         res.redirect('/restaurants');
     }
 });
-router.get("/cuisine", async (req,res)=>{
-    try{
-        const restInfo=await restaurantsData.classifyCuisines();
-        console.log(restInfo);
-        res.render('./restaurants/rating}', {
-            restInfo:restInfo
-        });
-    }catch(e){
-        console.log(e);
-        res.redirect('./restaurants/all');
-    }
-});
 
-router.get("/rating", async (req,res)=>{
-    try{
-        const restInfo=await restaurantsData.getRating();
-        console.log(restInfo);
-        res.render('./restaurants/rating}', {
-            restInfo:restInfo
-        });
-    }catch(e){
-        console.log(e);
-        res.redirect('./restaurants/all');
-    }
-});
 
 router.get("/:name", async (req,res)=>{
     try{

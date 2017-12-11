@@ -31,7 +31,7 @@
             {{#each this}}
               <div class="col-md-4">
                   <h2>{{this.R_name}}</h2>
-                  <p>{{this.R_href}}</p>
+                  <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
                   <p>{{this.R_location}}</p>
                   <p>{{this.R_cuisine}}</p>
                   <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
