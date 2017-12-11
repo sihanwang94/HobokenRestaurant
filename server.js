@@ -16,6 +16,7 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 const exphbs = require("express-handlebars");
 const Handlebars = require("handlebars");
+const statics = express.static(__dirname + '/public');
 
 
 const handlebarsInstance = exphbs.create({
@@ -50,6 +51,7 @@ require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
 
+app.use("/public", statics);
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms

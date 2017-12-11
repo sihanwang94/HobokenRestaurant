@@ -38,7 +38,7 @@ async function getAverageLike(restaurantId){
     for(let i=0;i<allReviews.length;i++){
         sum+=allReviews[i].reviewer_like;
     }
-    const res=sum/(allReviews.length+1);   
+    const res=sum/(allReviews.length);   
     const averageLike= parseFloat((res).toFixed(2));
     return (allReviews.length!==0)? averageLike:0;
 }

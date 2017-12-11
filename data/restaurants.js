@@ -26,7 +26,7 @@ async function getSome(){
     const restaurantsCollection=await restaurants();
     const allRestaurants=await restaurantsCollection.find({}).toArray();
     let resultsList=[];
-    for(let i=0;i<12;i++){
+    for(let i=0;i<24;i++){
         let list=[];
         for(let j=0;j<allRestaurants[i].R_review.length;j++){
             let review={
