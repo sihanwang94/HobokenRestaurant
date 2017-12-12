@@ -9,13 +9,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </head>
+    <style>
+      body{
+        background: #FEF2E9;
+      }
+      p,h4,h3,h2{
+        color:#826962;
+      }
+      .panel{
+        text-align: center;
+        background: rgba(244, 190, 152, 0.1);
+       
+      }
+      .more{
+        background:#826962;
+        color:white;
+      }
+      .row{
+        margin-top:30px;
+      }
+    </style>
+</head>
 
   <body>
 
     {{>header}}
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
          <p><a class="btn btn-lg learnmore" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
@@ -26,11 +45,11 @@
       <div class="row" >
           {{#each coffeeAndTea}}
            <div class="col-md-4">
-              <h2>{{this.R_name}}</h2>
-              <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
+              <div class="panel">
+              <h4>{{this.R_name}}</h4>
               <p>{{this.R_location}}</p>
-              <p>{{this.R_cuisine}}</p>
-              <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+              <a class="btn more" href="/restaurants/{{this._id}}" role="button">More &raquo;</a></p>     
+            </div>           
            </div>
           {{/each}}    
       </div>   

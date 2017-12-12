@@ -39,7 +39,7 @@ async function getAverageLike(restaurantId){
         sum+=allReviews[i].reviewer_like;
     }
     const res=sum/(allReviews.length);   
-    const averageLike= parseFloat((res).toFixed(2));
+    const averageLike= parseFloat((res).toFixed(1));
     return (allReviews.length!==0)? averageLike:0;
 }
 
@@ -171,11 +171,38 @@ async function gatherCuisines(){
     return result; 
 }
 
+async function getReviewByreviewId(id) {
+    if(id===undefined) throw "Please provide an id.";
+    const restaurantsCollection=await requiredRestaurant();
+    const theRestaurants=await restaurants.getAllRestaurants();
+    //const result=[];
+    for(let i=0;i<theRestaurants.length;i++){
+        const theReviews = await this.getReviewsByRestaurantId(theRestaurants[i]._id);
+        console.log(theReviews);
+        if (theReviews) {
+            for(let i=0;i<theReviews.length;i++){
+                if(theReviews[i]._id){
+                    if(theReviews[i]._id===id){
+                        return theReviews[i];
+                    } 
+                }else{
+                    continue;
+                }
+            }
+        }      
+    }
+    // if(id === null || (id.length !== 12 && id.length !== 24)) throw "Please provide an id.";
+    // const restaurantsCollection=await requiredRestaurant();
+    // const theRestaurant=await restaurantsCollection.findOne({'R_review._id':ObjectId(id)});
+    // if(!theRestaurant || theRestaurant===null) throw "No restaurant with that name.";
+    // return theRestaurant;
+    
+}
+
 async function addReview(restaurantId,name,like,review) {
     const restaurantsCollection=await requiredRestaurant();
-    const theRestaurant=await restaurantsCollection.findOne({_id: restaurantId});
+    const theRestaurant=await restaurantsCollection.findOne({_id: ObjectId(restaurantId)});
     if (!theRestaurant) throw "Restaurant not found.";
-
     let theReview={
         _id:new ObjectId(),
         reviewer_name:name,
@@ -186,9 +213,48 @@ async function addReview(restaurantId,name,like,review) {
     let newReview={
         $push: {R_review: theReview}  
     };
-    await restaurantsCollection.updateOne({_id: restaurantId},newReview);   
+    await restaurantsCollection.updateOne({_id: ObjectId(restaurantId)},newReview);   
     return theReview;
 }
 
+//Updates the specified review for the restaurant  with only the supplied changes,and return the updated Review
+async function updateReview(restaurantId,reviewId,suppliedChange){
+    const restaurantsCollection=await requiredRestaurant();
+    const theRestaurant=await restaurantsCollection.findOne({ _id: ObjectId(restaurantId)});
+    if(theRestaurant) {
+        if (suppliedChange.reviewer_name) {
+            restaurantsCollection.update({'R_review._id':reviewId}, {$set:{'R_review.$.reviewer_name': suppliedChange.reviewer_name}});
+        }
+        if (suppliedChange.reviewer_like) {
+            restaurantsCollection.update({'R_review._id':reviewId}, {$set:{'R_review.$.reviewer_like': suppliedChange.reviewer_like}});
+        }
+        if (suppliedChange.review) {
+            restaurantsCollection.update({'R_review._id':reviewId}, {$set:{'R_review.$.review': suppliedChange.review}});
+        }
+    }     
+    return await this.getReviewByreviewId(reviewId);
+}
 
-module.exports={addRatingForAll,getRating,getReviewsByRestaurantId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview};
+//Deletes the Review specified
+async function deleteReview(id){
+    if(!id) throw "No id provided.";
+
+    const restaurantsCollection=await requiredRestaurant();
+    const theRestaurants=await restaurants.getAllRestaurants();
+    for(let i=0;i<theRestaurants.length;i++){
+        const theReviews =await getReviewsByRestaurantId(theRestaurants[i]._id);
+        if (!theReviews) throw "No reviews found.";
+        for(let j=0;j<theReviews.length;j++){
+            if(theReviews[j]._id===ObjectId(id)){
+                let deleteReviewInRestaurant=await restaurantsCollection.update(
+                    {_id:theRestaurants[i]._id},
+                    {$pull:{'R_review':{_id:ObjectId(id)}}}
+                )
+                if(deleteReviewInRestaurant.deleteCount===0) throw "Could not delete the review.";
+            }
+        }    
+    }
+    return "{delete review:true}";
+}
+
+module.exports={addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};

@@ -51,7 +51,7 @@ h3{
 }
 .restaurant{
     margin:auto 30px;
-}
+} 
 
 .title{
     color:#165446;
@@ -61,8 +61,7 @@ h3{
 }
 .single{
     padding:20px;
-    background: white;
-    margin:50px auto;
+    margin:30px auto;
     border-radius: 10px;    
 }
 .review {
