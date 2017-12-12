@@ -2,11 +2,20 @@ module.exports = function(app, passport) {
     
     // normal routes ===============================================================
     
-        // show the home page (will also have our login links)
+        // show the home page 
         app.get('/', function(req, res) {
+            if(req.user) {
+                /*
+                * This line check user existence.
+                * If it existed will redirect to restaurant page.
+                */
+                    res.redirect('/restaurants');
+            }else{
             res.render('index');
+            }
         });
-    
+
+
         // PROFILE SECTION =========================
         app.get('/profile', isLoggedIn, function(req, res) {
             res.render('profile', {
@@ -19,9 +28,7 @@ module.exports = function(app, passport) {
             req.logout();
             res.redirect('/');
         });
-        app.get('/restaurant', function(req, res) {
-            res.render('restaurant');
-        });
+
     
     // =============================================================================
     // AUTHENTICATE (FIRST LOGIN) ==================================================
