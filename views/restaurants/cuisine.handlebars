@@ -9,19 +9,74 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <style>
+      .jumbotron{
+          background: #1654443b; 
+          height:auto;
+      }
+      .classify{
+        margin-top:40px;
+      }
+      .logo {
+        color: #165446;
+        font-size: 40px;
+      }
+      .everycuisine{
+        color: #165446;
+      }
+    
+    </style>
   </head>
-
   <body>
 
     {{>header}}
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <h1>Let's Find Restaurants in Hoboken!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
-      </div>
+        <div class="container-fluid text-center">
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span  class="glyphicon glyphicon-circle-arrow-down logo" ></span>
+                <h4><a href="/reviews/cuisine/sandwiches" class="everycuisine">Sandwiches</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/american" class="everycuisine">American</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/bars" class="everycuisine">Bars</a></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/branch" class="everycuisine">Branch</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/coffeeAndTea" class="everycuisine">Coffee & Tea</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/delis" class="everycuisine">Delis</a></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/italian" class="everycuisine">Italian</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/pizza" class="everycuisine">Pizza</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/chinese" class="everycuisine">Chinese</a></h4>
+              </div>
+            </div>
+        </div>
     </div>
 
     <div class="container">

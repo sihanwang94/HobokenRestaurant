@@ -1,0 +1,52 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+/*Background Image*/
+body{
+    background:rgba(188, 0, 13, 0.1);
+    font-family: 'Quicksand', sans-serif;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.list-group-item{
+    border:2px solid rgba(188, 0, 13, 0.4);
+    width:auto;
+}
+.red,h2,h4,location{
+    color:rgba(188, 0, 13, 0.8);
+}
+h2{
+    margin-top:30px;
+}
+.location{
+    text-align: center;
+}
+
+.frame{
+    border-radius: 10px;  
+    background: white;
+
+}
+.singleReview{
+    padding:20px;
+    background-color:white;
+    margin:50px auto;
+    border-radius: 10px;
+    border:2px solid rgba(188, 0, 13, 0.4);   
+}
+
+.more{
+    background-color: rgba(188, 0, 13, 0.4); 
+    color:rgba(188, 0, 13, 0.8);
+    outline: none;
+
+}
+.more:hover{
+    background-color: rgba(188, 0, 13, 0.4);
+    color: white;
+    outline: none;
+}
+

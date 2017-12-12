@@ -9,70 +9,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
+    <style>
+      .jumbotron{
+          background: #1654443b; 
+          height:auto;
+      }
+      .classify{
+        margin:50px auto;
+      }
+      .logo {
+        color: #1decbc;
+        font-size: 50px;
+      }
+    </style>
   </head>
 
   <body>
 
-    {{>header}}
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
+   {{>header}}
     <div class="jumbotron">
-      <div class="container">
-        <h2>Search Your Restaurants in Hoboken</h2>
-        <p>This is a template for a simple marketing or informational website. </p>
+      <div class="container-fluid text-center">
         <div class="row">
-            <div class="container">
-              <h2>Cuisine</h2>
-              <p>This is a template for a simple marketing or informational website.</p>
-              <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Cuisine
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="/reviews/cuisine/sandwiches">Sandwiches</a></li>
-                  <li><a href="/reviews/cuisine/italian">Italian</a></li>
-                  <li><a href="/reviews/cuisine/coffeeAndTea">Coffee & Tea</a></li>
-                  <li><a href="/reviews/cuisine/branch">Branch</a></li>
-                  <li><a href="/reviews/cuisine/american">American</a></li>
-                  <li><a href="/reviews/cuisine/chinese">Chinese</a></li>
-                  <li><a href="/reviews/cuisine/delis">Delis</a></li>
-                  <li><a href="/reviews/cuisine/pizza">Pizza</a></li>
-                  <li><a href="/reviews/cuisine/bars">Bars</a></li>
-                  <li class="divider"></li>
-                  <li><a href="/restaurants/all">All Restaurants</a></li>
-                </ul>
-              </div>
+            <div class="col-sm-4 classify">
+              <span class="glyphicon glyphicon-tags logo"></span>
+              <h2><a class="title" href="/reviews/cuisine">CUISINE</a></h2>
             </div>
-
-            <div class="smallContainer">
-                <img src="" class="bodyImage">
-                <h3><a class="title" href="/reviews/rating">Rating</a></h3>
-                <p>This is a template for a simple marketing or informational website. </p>
+            <div class="col-sm-4 classify">
+              <span class="glyphicon glyphicon-leaf logo"></span>
+              <h2><a class="title" href="/reviews/rating">RATING</a></h2>
             </div>
-
-            <div class="smallContainer">
-                <img src="" class="bodyImage">
-                <h3><a class="title" href="#">Nearby</a></h3>
-                <p>This is a template for a simple marketing or informational website. </p>
+            <div class="col-sm-4 classify">
+              <span class="glyphicon glyphicon-certificate logo"></span>
+              <h2><a class="title" href="#">NEARBY</a></h2>
             </div>
-
         </div>
       </div>
     </div>
+    
 
     <div class="container">
-      <div class="row" >
-          {{#each all}}
-           <div class="col-md-4">
-              <h2>{{this.R_name}}</h2>
-              <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
-              <p>{{this.R_location}}</p>
-              <p>{{this.R_cuisine}}</p>
-              <p>This is a template for a simple marketing or informational website.</p>
-              <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a>   
-           </div>
-          {{/each}}    
-      </div>   
+        <div class="row" >
+            {{#each all}}
+            <div class="col-md-4">
+                <h2>{{this.R_name}}</h2>
+                <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
+                <p>{{this.R_location}}</p>
+                <p>{{this.R_cuisine}}</p>
+                <p>This is a template for a simple marketing or informational website.</p>
+                <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a>   
+            </div>
+            {{/each}}    
+        </div>   
       <hr>
 
       {{>footer}} 
