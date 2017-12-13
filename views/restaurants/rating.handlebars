@@ -9,6 +9,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <style>
+      .jumbotron{
+          background: #16543f1f; 
+          height:auto;
+      }
+      .jumbotronTitle{
+        color:#165446;
+      }
+      p,h4,h3,h2{
+        color:#165446;
+      }
+      .panel{
+        text-align: center;
+        background: #1654443b; 
+      }
+      .name{
+          color:#165446;
+          outline: none;   
+      }
+      .name:hover{
+           color: #165446; 
+      }
+      .rate{
+          color: white;
+          background-color:#165446; 
+          outline: none;   
+      }
+      .rate:hover{
+          color: #1decbc;
+          background-color:#165446; 
+          outline: none; 
+      }
+    </style>
+    
   </head>
 
   <body>
@@ -17,25 +52,30 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <h1>Let's Find Restaurants in Hoboken!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
-      </div>
+      <div class="container-fluid bg-2 text-center">
+        <h2 class="jumbotronTitle">Which is the Most Popular ？</h2>
+    </div>
     </div>
 
     <div class="container">
       <div class="row" >
           {{#each theRestaurants}}
-           <div class="col-md-4">
-              <h2>{{this.R_name}}</h2>
-              <p>{{this.R_averageaLike}}</p>
-              <p>{{this.R_location}}</p>
-              <p>{{this.R_cuisine}}</p>
-              <p><a href="https://www.yelp.com{{this.R_href}}">https://www.yelp.com{{this.R_href}}</a></p>
-              <a class="btn btn-default" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+           <div class="col-md-6">
+             <div class="panel">
+                  <a href="/restaurants/{{this._id}}" class="name">
+                    <h4><span class="glyphicon glyphicon-cutlery"></span> {{this.R_name}}</h4> 
+                  </a>
+             
+                <p>{{this.R_location}}</p>
+                <p>{{this.R_cuisine}}</p>
+                <p>
+                  <a  href="/restaurants/{{this._id}}" class="btn rate">
+                    <span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;{{this.R_averageaLike}}
+                  </a>
+                 </p>  
+             </div>      
            </div>
-          {{/each}}    
+          {{/each}}  
       </div>   
       <hr>
 

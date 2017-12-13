@@ -48,6 +48,15 @@ router.get("/rating", async (req,res)=>{
     } 
 });
 
+router.get("/nearby", async (req,res)=>{
+    try{
+        res.send("nearby");
+    }catch(e){
+        res.status(500).json({error:e});
+    } 
+});
+
+
 router.get("/cuisine", async (req,res)=>{
     try{
         const theRestaurants=await reviewsData.classifyCuisines();
@@ -59,16 +68,6 @@ router.get("/cuisine", async (req,res)=>{
         res.redirect('/restaurants');
     } 
 });
-
-// router.get("/:restaurantId/:reviewId", async (req,res)=>{
-//     try{
-//         const reviewInfo=await reviewsData.getReviewByReviewId(req.params.restaurantId,req.params.reviewId);
-//         res.json(reviewInfo);
-//     }catch(e){
-//         console.log(e);
-//         res.status(404).json({error:"The review not found."});
-//     } 
-// });
 
 router.get("/cuisine/sandwiches", async (req,res)=>{
     try{
@@ -170,6 +169,16 @@ router.get("/cuisine/bars", async (req,res)=>{
     } 
 });
 
+router.get("/:restaurantId/:reviewId", async (req,res)=>{
+    try{
+        const reviewInfo=await reviewsData.getReviewByReviewId(req.params.restaurantId,req.params.reviewId);
+        res.json(reviewInfo);
+    }catch(e){
+        console.log(e);
+        res.status(404).json({error:"The review not found."});
+    } 
+});
+
 router.post("/:restaurantId", async (req,res)=>{
     let restaurantInfo=req.body;
     if(!restaurantInfo){
@@ -212,33 +221,31 @@ router.put("/:restaurantId/:reviewId",async (req,res)=>{
         return;
     }
     try{
-        const getData=await reviewsData.getReviewByReviewId(req.params.reviewId);
-        try{
-            const result=await reviewsData.updateReview(req.params.restaurantId,req.params.reviewId,reviewInfo);
-            res.json(result);
-        }catch(e){
-            console.log(e);
-            res.status(500).json({error:e});
-        }
+        await reviewsData.getReviewByreviewId(req.params.reviewId);
     }catch(e){
         console.log(e);
         res.status(404).json({error:"Review not found."});
     }
-
-    
+    try{
+        const result=await reviewsData.updateReview(req.params.restaurantId,req.params.reviewId,reviewInfo);
+        res.json(result);
+    }catch(e){
+        console.log(e);
+        res.status(500).json({error:e});
+    } 
 });
 
 router.delete("/:id", async (req,res)=>{
     try{
-        const getReview=await reviewsData.getReviewByReviewId(req.params.id);
-        try{
-            const result=await reviewsData.deleteReview(req.params.id);
-            res.sendStatus(200);
-        }catch(e){
-            res.status(500).json({error:e});
-        }
+        await reviewsData.getReviewByReviewId(req.params.id);
     }catch(e){
         res.status(404).json({error:"The review not found."});
+    }
+    try{
+        const result=await reviewsData.deleteReview(req.params.id);
+        res.sendStatus(200);
+    }catch(e){
+        res.status(500).json({error:e});
     }
 });
 

@@ -10,6 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <link  rel="stylesheet" href="../../public/css/single.css" type="text/css">
+    
   </head>
 
   <body>
@@ -19,31 +22,35 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Let's Find Restaurants in Hoboken!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
+         <p><a class="btn btn-lg learnmore" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
       </div>
     </div>
 
-    <div class="container">
-      <div class="row" >
-           <div class="col-md-4">
-              <h2>{{restaurant.R_name}}</h2>
-              <p><a href="https://www.yelp.com{{restaurant.R_href}}">https://www.yelp.com{{restaurant.R_href}}</a></p>
-              <p>{{restaurant.R_location}}</p>
-              <p>{{restaurant.R_cuisine}}</p>
-              
-              {{#each restaurant.R_review}}
-                <p>{{this.reviewer_name}} </p>
-                <p>{{this.reviewer_like}} </p>
-                <p>{{this.review}} </p>
-              {{/each}}  
-           </div>
-      </div>   
-      <hr>
+ 
+    <div class="container frame">
+        <h2 class="text-center">{{restaurant.R_name}}</h2>
+       
+        <p class="location red">{{restaurant.R_location}}</p>
+        </br>
+        <ul class="list-group">
+          {{#each restaurant.R_cuisine}}
+              <li class="list-group-item"><h5 class="red"> <span class="glyphicon glyphicon-heart"></span> &nbsp;&nbsp;{{this}}</h5></li>
+           {{/each}}
+        </ul>
 
-      {{>footer}} 
+        <div class="row">
+           {{#each restaurant.R_review}}
+                <div class="singleReview">
+                    <p class="red"> <span class="glyphicon glyphicon-user"></span> &nbsp; {{this.reviewer_name}} </p>
+                    <p class="red"><span class="glyphicon glyphicon-star-empty"></span> &nbsp; {{this.reviewer_like}} </p>
+                    <div class="certainReview"><p ><span class="glyphicon glyphicon-pencil red"> </span>&nbsp; {{this.review}} </p></div>
+                    <button class="more btn-sm">MORE &raquo;</button>
+                </div>
+            {{/each}}
+        </div>
+      
+        {{>footer}} 
     </div> 
-
+    <script src="../../public/js/single.js"></script>
   </body>
 </html>

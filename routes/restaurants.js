@@ -8,7 +8,6 @@ router.get("/", async (req,res)=>{
         const theRestaurants=await restaurantsData.getSome();
         res.render('./restaurants/restaurants', {
             theRestaurants:theRestaurants
-
         });   
     }catch(e){
         console.log(e);
