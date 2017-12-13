@@ -14,6 +14,7 @@ router.get("/", async (req,res)=>{
         res.redirect('/restaurants');
     }   
 });
+
 router.get("/all", async (req,res)=>{
     try{
         const all=await restaurantsData.getAllRestaurants();
@@ -21,20 +22,19 @@ router.get("/all", async (req,res)=>{
             all:all
         });
     }catch(e){
-        res.redirect('/restaurants');
+        res.redirect('/');
     }   
 });
 
 router.get("/:id", async (req,res)=>{
     try{
         const restaurant=await restaurantsData.getRestaurantById(req.params.id);
-        //console.log(restaurant.R_name);
         res.render('../views/restaurants/single', {
             restaurant:restaurant
         });
     }catch(e){
         console.log(e);
-        res.redirect('/restaurants');
+        res.redirect('/');
     }
 });
 

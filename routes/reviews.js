@@ -44,7 +44,7 @@ router.get("/rating", async (req,res)=>{
         });
     }catch(e){
         console.log(e);
-        res.redirect('/restaurants/restaurants');
+        res.redirect('/');
     } 
 });
 
