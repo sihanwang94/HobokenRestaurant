@@ -5,7 +5,6 @@ const restaurantsData=data.restaurants;
 module.exports = function(app, passport) {
     
     // normal routes ===============================================================
-    
         // show the home page (will also have our login links)
         app.get('/', async function(req, res) {
             try{
@@ -30,9 +29,6 @@ module.exports = function(app, passport) {
         app.get('/logout', function(req, res) {
             req.logout();
             res.redirect('/');
-        });
-        app.get('/restaurant', function(req, res) {
-            res.render('restaurant');
         });
     
     // =============================================================================
