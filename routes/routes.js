@@ -1,10 +1,22 @@
+const router=require("express").Router();
+const data=require("../data");
+const restaurantsData=data.restaurants;
+
 module.exports = function(app, passport) {
     
     // normal routes ===============================================================
     
         // show the home page (will also have our login links)
-        app.get('/', function(req, res) {
-            res.render('index');
+        app.get('/', async function(req, res) {
+            try{
+                const theRestaurants=await restaurantsData.getSome();
+                res.render('./restaurants/restaurants', {
+                    theRestaurants:theRestaurants
+                });   
+            }catch(e){
+                console.log(e);
+                res.redirect('/restaurants');
+            }   
         });
     
         // PROFILE SECTION =========================

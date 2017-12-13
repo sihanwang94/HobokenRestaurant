@@ -48,6 +48,15 @@ router.get("/rating", async (req,res)=>{
     } 
 });
 
+router.get("/nearby", async (req,res)=>{
+    try{
+        res.send("nearby");
+    }catch(e){
+        res.status(500).json({error:e});
+    } 
+});
+
+
 router.get("/cuisine", async (req,res)=>{
     try{
         const theRestaurants=await reviewsData.classifyCuisines();
