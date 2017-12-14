@@ -20,7 +20,11 @@ $(document).ready(function() {
               url         : restaurantId, 
               data        : formData, // our data object
               success: function(data) {
-                $('.text').text(JSON.stringify(data));
+                $('.text').text("You have submitted review below successfully:");
+                $('.text1').text(JSON.stringify(data.reviewer_like));
+                $('.text2').text(JSON.stringify(data.review));
+
+
               },
               dataType    : 'json', // what type of data do we expect back from the server
               encode      : true
