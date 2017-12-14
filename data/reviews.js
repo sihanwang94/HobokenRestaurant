@@ -203,8 +203,8 @@ async function getReviewByreviewId(id) {
 async function addReview(userId,restaurantId,name,like,review) {
     const restaurantsCollection=await requiredRestaurant();
     const usersCollection = await requiredUsers();
-    const theUser = await usersCollection.findOne({_id: userId});
-    const theRestaurant=await restaurantsCollection.findOne({_id: restaurantId});
+    const theUser = await usersCollection.findOne({_id: ObjectId(userId)});
+    const theRestaurant=await restaurantsCollection.findOne({_id: ObjectId(restaurantId)});
     if (!theRestaurant) throw "Restaurant not found.";
     let theReview={
         _id:new ObjectId(),
