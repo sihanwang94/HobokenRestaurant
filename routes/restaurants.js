@@ -1,6 +1,7 @@
 const router=require("express").Router();
 const data=require("../data");
 const restaurantsData=data.restaurants;
+const reviewsData = data.reviews;
 const xss=require("xss");
 
 router.get("/", async (req,res)=>{
@@ -37,7 +38,15 @@ router.get("/:id", async (req,res)=>{
         res.redirect('/');
     }
 });
-
+router.get("/addReview/:id",async (req,res)=>{
+    try{
+        if(req.user) res.render('../views/restaurants/reviewform',{user: req.user});  
+        else res.redirect('/login');        
+    }catch(e){
+        console.log(e);
+        res.redirect('/');
+    } 
+});
 
 router.get("/:name", async (req,res)=>{
     try{

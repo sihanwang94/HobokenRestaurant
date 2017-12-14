@@ -9,6 +9,7 @@ router.get("/restaurant",async (req,res)=>{
     res.status(200).send("Restaurant root");
 });
 
+
 router.get("/restaurant/:restaurantId", async (req,res)=>{
     try{
         const reviewsList=await reviewsData.getReviewsByRestaurantId(req.params.restaurantId);
