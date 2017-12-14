@@ -1,5 +1,5 @@
-var form = document.querySelector("form");
-var log = document.querySelector("pre");
+/*var form = document.querySelector("form");
+var log = document.querySelector("#pre");
 
 form.addEventListener("submit", function(event) {
   var data = new FormData(form);
@@ -9,4 +9,4 @@ form.addEventListener("submit", function(event) {
   };
  pre.innerText = output;
   event.preventDefault();
-}, false);
+}, false);*/

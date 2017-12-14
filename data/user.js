@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
-        reviews      : [{ restaurantID: ObjectId, reviewID: ObjectId, review:String }]
+        reviews      : [{ restaurantID: ObjectId, reviewID: ObjectId, reviewer_like:Number,review:String }]
         
     },
     facebook         : {
