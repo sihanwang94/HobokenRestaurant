@@ -8,10 +8,10 @@
     <label for="score0">0</label>
     <input type="radio" id="score1"
            name="score" value=1>
-    <label for="score1">1</label>
+    <label for="score">1</label>
         <input type="radio" id="score2"
            name="score" value=2>
-    <label for="score0">2</label>
+    <label for="score">2</label>
      <input type="radio" id="score3"
            name="score" value=3>
     <label for="score3">3</label>
@@ -40,16 +40,14 @@
 <textarea rows="4" cols="50" name="comment" form="usrform">
 Enter review here...</textarea>
 <p class="text">user:{{user.email}}{{restaurantIds}}</p>
+<p id="restaurantId" >{{restaurantId}}</p>
  
   </div>
   <div>
     <button type="submit">Submit</button>
   </div>
 </form>
+<script  src="/public/js/addReview.js"></script>
 <pre id="log">
 </pre>
-    <script  src="/public/js/addReview.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
+

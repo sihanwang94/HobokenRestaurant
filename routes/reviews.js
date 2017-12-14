@@ -182,7 +182,8 @@ router.get("/:restaurantId/:reviewId", async (req,res)=>{
 
 router.post("/:restaurantId", async (req,res)=>{
     let restaurantInfo=req.body;
-    let userInfo = req.user
+    let userInfo = req.user;
+    let restaurantId=req.params.restaurantId
     if(!restaurantInfo){
         res.status(400).json({error:"You must provide data to create a review."});
         return;
@@ -196,7 +197,7 @@ router.post("/:restaurantId", async (req,res)=>{
         return;
     }
     try {
-        const result=await reviewsData.addReview(userInfo._id,req.params.restaurantId,userInfo.local.email,restaurantInfo.reviewer_like,restaurantInfo.review);
+        const result=await reviewsData.addReview(userInfo._id,restaurantId,userInfo.local.email,restaurantInfo.reviewer_like,restaurantInfo.review);
         res.json(result);
     } catch (e){
         console.log(e);
