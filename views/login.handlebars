@@ -5,11 +5,42 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
-    <style>
-        body         { padding-top:80px; }
-    </style>
+    <link  rel="stylesheet" href="../../public/css/loginSignup.css" type="text/css">
+
+
 </head>
 <body>
+     <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Hoboken Restaurant</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/reviews/cuisine">CUISINE</a></li>
+        <li><a href="/reviews/rating">RATING</a></li>
+        <li><a href="/reviews/nearby">NEARBY</a></li>
+        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> &nbsp;PROFILE</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">ACCOUNT
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="list"><a href="/login"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;LOG IN</a></li>
+            <li class="list"><a href="/signup"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;SIGN UP</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ 
 <div class="container">
 <div class="col-sm-6 col-sm-offset-3">
 
@@ -24,7 +55,7 @@
     <!-- LOGIN FORM -->
     <form action="/login" method="post">
         <div class="form-group">
-            <label>Email</label>
+            <label>Username</label>
             <input type="text" class="form-control" name="email">
         </div>
         <div class="form-group">

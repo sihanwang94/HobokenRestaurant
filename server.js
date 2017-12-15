@@ -1,3 +1,7 @@
+// server.js
+
+// set up ======================================================================
+// get all the tools we need
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 3000;
@@ -14,6 +18,7 @@ const mongoConfig = settings.mongoConfig;
 const exphbs = require("express-handlebars");
 const Handlebars = require("handlebars");
 const statics = express.static(__dirname + '/public');
+
 
 const handlebarsInstance = exphbs.create({
     defaultLayout: "main",
@@ -40,7 +45,6 @@ const handlebarsInstance = exphbs.create({
     // let the next middleware run:
     next();
   };
-  
 // configuration ===============================================================
 mongoose.connect(mongoConfig.serverUrl+mongoConfig.database); // connect to our database
 

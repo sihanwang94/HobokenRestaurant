@@ -11,8 +11,7 @@ $(document).ready(function() {
             center: new google.maps.LatLng(40.7441,-74.0324),
             zoom: 14,
             mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-    
+        };   
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     }
 
@@ -33,8 +32,8 @@ $(document).ready(function() {
 	        infowindow.setContent(html);
 	        infowindow.open(map, marker);
 	    });
-	} 
-              
+    } 
+
     $.ajax({
         type: 'POST', 
         url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + urlData + "&key=" + "AIzaSyDDg770LxmiVd3xLpzpS7kri_aD6fKc2Is",

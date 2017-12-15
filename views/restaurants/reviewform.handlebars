@@ -1,52 +1,55 @@
-<!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
+<link rel="stylesheet" href="../../public/css/reviewform.css" type="text/css">
 
-<form> 
-  <p>Please give a score to this restaurant</p>
-  <div>
-    <input type="radio" id="score0"
-           name="score" value=0>
-    <label for="score0">0</label>
-    <input type="radio" id="score1"
-           name="score" value=1>
-    <label for="score">1</label>
-        <input type="radio" id="score2"
-           name="score" value=2>
-    <label for="score">2</label>
-     <input type="radio" id="score3"
-           name="score" value=3>
-    <label for="score3">3</label>
-     <input type="radio" id="score4"
-           name="score" value=4>
-    <label for="score4">4</label>
-     <input type="radio" id="score5"
-           name="score" value=5 checked>
-    <label for="score5">5</label>
-     <input type="radio" id="score6"
-           name="score" value=6>
-    <label for="score6">6</label>
-     <input type="radio" id="score7"
-           name="score" value=7>
-    <label for="score7">7</label>
-         <input type="radio" id="score8"
-           name="score" value=8>
-    <label for="score8">8</label>
-         <input type="radio" id="score9"
-           name="score" value=9>
-    <label for="score9">9</label>
-         <input type="radio" id="score10"
-           name="score" value=10>
-    <label for="score10">10</label>
-    <br>
-    <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter review here...">
-    </textarea>
-    <p class="text">user:{{user.email}}{{restaurantIds}}</p>
-    <p id="restaurantId" >{{restaurantId}}</p>
-  </div>
-  <div>
-    <button type="submit">Submit</button>
-  </div>
-</form>
-<script  src="/public/js/addReview.js"></script>
-<pre id="log">
-</pre>
+<body>
 
+  {{>header}}
+  <br>
+  <br>
+
+  <br>
+  <form>
+    <p>Please give a score to this restaurant</p>
+    <div>
+      <input type="radio" id="score0" name="score" value=0>
+      <label for="score0">0</label>
+      <input type="radio" id="score1" name="score" value=1>
+      <label for="score">1</label>
+      <input type="radio" id="score2" name="score" value=2>
+      <label for="score">2</label>
+      <input type="radio" id="score3" name="score" value=3>
+      <label for="score3">3</label>
+      <input type="radio" id="score4" name="score" value=4>
+      <label for="score4">4</label>
+      <input type="radio" id="score5" name="score" value=5 checked>
+      <label for="score5">5</label>
+      <input type="radio" id="score6" name="score" value=6>
+      <label for="score6">6</label>
+      <input type="radio" id="score7" name="score" value=7>
+      <label for="score7">7</label>
+      <input type="radio" id="score8" name="score" value=8>
+      <label for="score8">8</label>
+      <input type="radio" id="score9" name="score" value=9>
+      <label for="score9">9</label>
+      <input type="radio" id="score10" name="score" value=10>
+      <label for="score10">10</label>
+      <br>
+      <textarea class="form-control" rows="4" cols="50" name="comment" form="usrform">
+Enter review here...</textarea>
+      <p class="text"></p>
+      <p class="text1"></p>
+      <p class="text2"></p>
+
+
+      <p id="restaurantId" hidden>{{restaurantId}}</p>
+
+    <div class="wrapper">
+    <div class="twoButton">
+      <button type="submit" class="btn btn-primary">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="/restaurants/{{restaurantId}}/#bottom" class="btn btn-info">Return</a>
+    </div>
+    </div>
+  </form>
+
+
+  <script src="/public/js/addReview.js"></script> {{>footer}}
+</body>

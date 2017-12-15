@@ -1,7 +1,6 @@
 const router=require("express").Router();
 const reviewsData=require("../data/reviews");
 const restaurantsData=require("../data/restaurants");
-//const xss = require("xss");
 
 router.get("/", async (req,res)=>{
     res.status(200).send("Review root");
@@ -51,15 +50,6 @@ router.get("/rating", async (req,res)=>{
     } 
 });
 
-// router.get("/addReview/:id",async (req,res)=>{
-//     try{
-//         if(req.user) res.render('../views/restaurants/reviewform',{user: req.user,restaurantId:req.params.id});  
-//         else res.redirect('/login');        
-//     }catch(e){
-//         console.log(e);
-//         res.redirect('/');
-//     } 
-// });
 router.get("/nearby", async (req,res)=>{
     try{
         const theRestaurants=await restaurantsData.getAllRestaurants();
@@ -71,6 +61,7 @@ router.get("/nearby", async (req,res)=>{
         res.redirect('/');
     } 
 });
+
 
 router.get("/cuisine", async (req,res)=>{
     try{

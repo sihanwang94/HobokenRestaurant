@@ -4,7 +4,31 @@ const requiredUsers =mongoCollections.users;
 const restaurants=require("./restaurants");
 const ObjectId = require('mongodb').ObjectId;
 const HashMap = require('hashmap');
-   
+
+async function getReviewsByUserId(userId) {
+    if(userId===undefined) throw "Please provide an restaurantId.";
+    const usersCollection=await requiredUsers();
+    const theUser=await usersCollection.findOne({_id:ObjectId(userId)});
+    const theReviews=theUser.reviews;
+    const restaurantsCollection=await requiredRestaurant();
+    if(!theUser || theUser===null) throw "No restaurant with that restaurantId.";
+    const result=[];
+    for(let i=0;i<theReviews.length;i++){
+        var theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(theReviews[i].restaurantID)});
+
+        let reviewsResult={
+            restaurantName:theRestaurant.R_name,
+            restaurantID:theReviews[i].restaurantID,
+            reviewID:theReviews[i].reviewID,
+            reviewer_name:theReviews[i].reviewer_name,
+            reviewer_like:theReviews[i].reviewer_like,
+            review:theReviews[i].review  
+        } 
+        result.push(reviewsResult);   
+    }  
+    return result;   
+}
+
 //filter: get all reviews for the restaurant
 async function getReviewsByRestaurantId(restaurantId) {
     if(restaurantId===undefined) throw "Please provide an restaurantId.";
@@ -171,7 +195,6 @@ async function gatherCuisines(){
     return result; 
 }
 
-
 async function getReviewByreviewId(id) {
     if(id===undefined) throw "Please provide an id.";
     const restaurantsCollection=await requiredRestaurant();
@@ -270,4 +293,4 @@ async function deleteReview(id){
     return "{delete review:true}";
 }
 
-module.exports={addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};
+module.exports={getReviewsByUserId,addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};
