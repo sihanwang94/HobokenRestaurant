@@ -25,10 +25,22 @@ module.exports = function(app, passport) {
         app.get('/profile', isLoggedIn, async function(req, res) {
             try{
                 const reviews = await reviewsData.getReviewsByUserId(req.user._id)
+
                 res.render('profile', {
                     user : req.user,
                     reviews:reviews
                 });
+
+                if(!reviews){
+                    res.render('profile',{user : req.user})
+                }else{
+                    res.render('profile', {
+                        user : req.user,
+                        reviews:reviews
+                    });
+                }
+
+
                 }catch(e){
                     console.log(e);
                     res.redirect('/');
