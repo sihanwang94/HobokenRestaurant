@@ -1,0 +1,74 @@
+<link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <style>
+      .jumbotron{
+          background: #16543f1f; 
+          height:auto;
+      }
+      .jumbotronTitle{
+        color:#165446;
+      }
+      p,h4,h3,h2{
+        color:#165446;
+      }
+      .panel{
+        text-align: center;
+        background: #1654443b; 
+      }
+      .name{
+          color:#165446;
+          outline: none;   
+      }
+      .name:hover{
+           color: #165446; 
+      }
+      .rate{
+          color: white;
+          background-color:#165446; 
+          outline: none;   
+      }
+      .rate:hover{
+          color: #1decbc;
+          background-color:#165446; 
+          outline: none; 
+      }
+    </style>
+
+
+  <body>
+
+    {{>header}}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container-fluid bg-2 text-center">
+        <h2 class="jumbotronTitle">Which is the Most Popular ？</h2>
+    </div>
+    </div>
+
+    <div class="container">
+      <div class="row" >
+          {{#each theRestaurants}}
+           <div class="col-md-6">
+             <div class="panel">
+                  <a href="/restaurants/{{this._id}}" class="name">
+                    <h4><span class="glyphicon glyphicon-cutlery"></span> {{this.R_name}}</h4> 
+                  </a>
+             
+                <p>{{this.R_location}}</p>
+                <p>{{this.R_cuisine}}</p>
+                <p>
+                  <a  href="/restaurants/{{this._id}}" class="btn rate">
+                    <span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;{{this.R_averageaLike}}
+                  </a>
+                 </p>  
+             </div>      
+           </div>
+          {{/each}}  
+      </div>   
+      <hr>
+
+      {{>footer}} 
+    </div> 
+
+  </body>
+

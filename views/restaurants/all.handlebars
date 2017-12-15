@@ -1,0 +1,86 @@
+ 
+    <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <style>
+      .carousel-inner img {
+          -webkit-filter: grayscale(90%);
+          filter: grayscale(90%); /* make all photos black and white */ 
+          width: 100%; 
+      }
+      .jumbotron{
+        background: white;
+        height:auto;
+        padding-bottom:10px;
+      }
+      .classify{
+        margin:10px auto;
+      }
+      .logo {
+        color: #1decbc;
+        font-size: 50px;
+      }
+      .title{
+        color: #1decbc;
+      }
+      p,h4,h3{
+        color:#165446;
+      }
+      .panel{ 
+        text-align: center;
+       
+      }
+      .name{
+        color:#165446;
+      }
+      .name:hover{
+        color:#1decbc;
+      }
+      .bigContainer{
+        margin-top:30px;
+      }
+    </style>
+
+  <body>
+
+   {{>header}}
+    <div class="jumbotron">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 classify">
+              <span class="glyphicon glyphicon-tags logo"></span>
+              <h2><a class="title" href="/reviews/cuisine">CUISINE</a></h2>
+            </div>
+            <div class="col-sm-4 classify">
+              <span class="glyphicon glyphicon-leaf logo"></span>
+              <h2><a class="title" href="/reviews/rating">RATING</a></h2>
+            </div>
+            <div class="col-sm-4 classify">
+              <span class="glyphicon glyphicon-certificate logo"></span>
+              <h2><a class="title" href="#">NEARBY</a></h2>
+            </div>
+        </div>
+      </div>
+    </div>
+
+        
+    <div class="carousel-inner">
+        <img src="../../public/image/jumbotron.png"  width="1200" height="600">    
+    </div>
+    
+
+    <div class="bigContainer">
+        <div class="row" >
+            {{#each all}}
+                <div class="col-md-6">
+                  <div class="panel">
+                      <h4><span class="glyphicon glyphicon-cutlery"></span> {{this.R_name}}</h4> 
+                      <a class="btn name" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+                  </div>
+                </div>
+            {{/each}}    
+        </div>   
+      <hr>
+
+      {{>footer}} 
+    </div> 
+
+  </body>

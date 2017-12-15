@@ -1,0 +1,52 @@
+<link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <style>
+      body{
+        background: #FEF2E9;
+      }
+      p,h4,h3,h2{
+        color:#826962;
+      }
+      .panel{
+        text-align: center;
+        background: rgba(244, 190, 152, 0.1);
+       
+      }
+      .more{
+        background:#826962;
+        color:white;
+      }
+      .row{
+        margin-top:30px;
+      }
+    </style>
+
+
+
+  <body>
+
+    {{>header}}
+
+    <div class="jumbotron">
+      <div class="container">
+         <p><a class="btn btn-lg learnmore" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row" >
+          {{#each american}}
+           <div class="col-md-4">
+             <div class="panel">
+                <h4>{{this.R_name}}</h4>
+                <p>{{this.R_location}}</p>
+                <a class="btn more" href="/restaurants/{{this._id}}" role="button">More &raquo;</a></p>     
+              </div>
+           </div>
+          {{/each}}    
+      </div>   
+      <hr>
+
+      {{>footer}} 
+    </div> 
+
+  </body>

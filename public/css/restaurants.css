@@ -1,0 +1,85 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+/*Background Image*/
+body{
+    background: rgba(244, 190, 152, 0.2);
+    font-family: 'Quicksand', sans-serif;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/*Style Jumbotron*/
+.jumbotron{
+    background-attachment: fixed;
+    background-size: cover;
+    background: url("../../public/image/jumbotron.png") no-repeat center center; 
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 30px;
+    margin-top:50px; 
+    height:400px;
+}
+
+.learnmore{
+    color: white;
+    background-color:#165446; 
+    outline: none;   
+    margin-top:250px; 
+}
+.learnmore:hover{
+    color:#1decbc;
+    background-color:#165446; 
+}
+
+.viewdetails{
+    color: white;
+    background-color:#165446; 
+    outline: none;   
+}
+.viewdetails:hover{
+    color:#1decbc;
+    background-color:#165446; 
+}
+
+h3{
+    color:#165446;
+}
+.icons p {
+    font-size: 15px;
+}
+.restaurant{
+    margin:auto 30px;
+} 
+
+.title{
+    color:#165446;
+}
+.title:hover{
+    color:#1decbc;
+}
+.single{
+    padding:20px;
+    margin:30px auto;
+    border-radius: 10px;    
+}
+.review {
+    padding-left:1em;
+    padding-right:1em;
+    padding-top:1.5em;
+    border-radius: 5px;
+    border:1px solid #16544079;
+    background: white;
+    height: 7.5em;
+}
+.review p {
+    margin: 0;
+    line-height: 1.5em;
+}
+footer{
+    text-align: center;
+}
+
+

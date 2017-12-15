@@ -1,0 +1,44 @@
+<link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <link  rel="stylesheet" href="../../public/css/single.css" type="text/css">
+
+
+  <body>
+
+    {{>header}}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+         <p><a class="btn btn-lg learnmore" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+ 
+    <div class="container frame">
+        <h2 class="text-center">{{restaurant.R_name}}</h2>
+       
+        <p class="location red">{{restaurant.R_location}}</p>
+        </br>
+        <ul class="list-group">
+          {{#each restaurant.R_cuisine}}
+              <li class="list-group-item"><h5 class="red"> <span class="glyphicon glyphicon-heart"></span> &nbsp;&nbsp;{{this}}</h5></li>
+           {{/each}}
+        </ul>
+        <a class="btn btn-primary" href="/restaurants/addReview/{{restaurant._id}}" role="button"><span class="glyphicon glyphicon-pencil red"></span>Add Review</a>
+
+
+        <div class="row">
+           {{#each restaurant.R_review}}
+                <div class="singleReview">
+                    <p class="red"> <span class="glyphicon glyphicon-user"></span> &nbsp; {{this.reviewer_name}} </p>
+                    <p class="red"><span class="glyphicon glyphicon-star-empty"></span> &nbsp; {{this.reviewer_like}} </p>
+                    <div class="certainReview"><p ><span class="glyphicon glyphicon-pencil red"> </span>&nbsp; {{this.review}} </p></div>
+                    <button class="more btn-sm">MORE &raquo;</button>
+                </div>
+            {{/each}}
+        </div>
+      
+        {{>footer}} 
+    </div> 
+    <script src="../../public/js/single.js"></script>
+  </body>

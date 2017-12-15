@@ -1,0 +1,102 @@
+<link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+    <style>
+      .jumbotron{
+          background: #16543f1f; 
+          height:auto;
+      }
+      .classify{
+        margin-top:40px;
+      }
+      .logo {
+        color: #165446;
+        font-size: 30px;
+      }
+      .everycuisine{
+        color: #165446;
+      }
+      p,h4,h3{
+        color:#165446;
+      }
+      .panel{
+        text-align: center;
+        background: #1654443b; 
+      }
+      
+    </style>
+
+  <body>
+
+    {{>header}}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container-fluid text-center">
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span  class="glyphicon glyphicon-circle-arrow-down logo" ></span>
+                <h4><a href="/reviews/cuisine/sandwiches" class="everycuisine">Sandwiches</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/american" class="everycuisine">American</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/bars" class="everycuisine">Bars</a></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/branch" class="everycuisine">Branch</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/coffeeAndTea" class="everycuisine">Coffee & Tea</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/delis" class="everycuisine">Delis</a></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/italian" class="everycuisine">Italian</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/pizza" class="everycuisine">Pizza</a></h4>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h4><a href="/reviews/cuisine/chinese" class="everycuisine">Chinese</a></h4>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="row" >
+          {{#each theRestaurants}}
+            {{#each this}}
+              <div class="col-md-6">
+                <div class="panel">
+                  <a href="/restaurants/{{this._id}}" class="name">
+                    <h4><span class="glyphicon glyphicon-cutlery"></span> {{this.R_name}}</h4> 
+                  </a>
+                  <p>{{this.R_location}}</p>
+                  <p>{{this.R_cuisine}}</p>
+                  <a class="btn name" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+                </div>
+              </div>
+            {{/each}}
+          {{/each}}
+
+      </div>   
+      <hr>
+
+      {{>footer}} 
+    </div> 
+
+  </body>
+

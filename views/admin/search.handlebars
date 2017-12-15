@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- <style>
+            body         { padding-top:80px; }
+    </style> -->
+</head>
+
+<body>
+    <main class="container">
+         <div class="jumbotron text-center">
+         </div>
+
+         <div class="container">
+         <div class="col-sm-6 col-sm-offset-3">
+
+        <div class="row">
+    <div class="col-sm-12">
+        <form id="static-form1" action="/result" method="post">
+
+                         <div class="form-group">
+                             <label> UserName</label>
+                             <div class="text clearfix"><p class="tips"></p></div>
+                             <input type="text" name="keyword" placeholder="provide the user you want to search" id="searchname" class="form-control" name="search" value="{{searchname}}">
+                         <div>
+                        
+                         <div class="text clearfix"><p class="tips"></p></div>  
+                         <button type="submit" class="btn btn-primary btn-sm" style="width:80px; height:30px;font-size:10px">search</button>
+                         </div>
+                         </div>
+
+        </form>
+        <form id="static-form2" action="/resultall" method="post">
+
+                         <button type="submit" class="btn btn-primary btn-sm" style="width:80px; height:30px;font-size:10px">search All</button>
+        </form>
+    </div>
+</div>
+       
+        </div>
+        </div>       
+    </main>
+   
+</body>
+
+</html>
