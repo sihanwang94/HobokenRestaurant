@@ -1,9 +1,33 @@
 const mongoCollections=require("../config/mongoCollections");
 const requiredRestaurant=mongoCollections.restaurants;
+const requiredUsers =mongoCollections.users;
 const restaurants=require("./restaurants");
 const ObjectId = require('mongodb').ObjectId;
 const HashMap = require('hashmap');
 
+async function getReviewsByUserId(userId) {
+    if(userId===undefined) throw "Please provide an restaurantId.";
+    const usersCollection=await requiredUsers();
+    const theUser=await usersCollection.findOne({_id:ObjectId(userId)});
+    const theReviews=theUser.reviews;
+    const restaurantsCollection=await requiredRestaurant();
+    if(!theUser || theUser===null) throw "No restaurant with that restaurantId.";
+    const result=[];
+    for(let i=0;i<theReviews.length;i++){
+        var theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(theReviews[i].restaurantID)});
+
+        let reviewsResult={
+            restaurantName:theRestaurant.R_name,
+            restaurantID:theReviews[i].restaurantID,
+            reviewID:theReviews[i].reviewID,
+            reviewer_name:theReviews[i].reviewer_name,
+            reviewer_like:theReviews[i].reviewer_like,
+            review:theReviews[i].review  
+        } 
+        result.push(reviewsResult);   
+    }  
+    return result;   
+}
 
 //filter: get all reviews for the restaurant
 async function getReviewsByRestaurantId(restaurantId) {
@@ -199,8 +223,10 @@ async function getReviewByreviewId(id) {
     
 }
 
-async function addReview(restaurantId,name,like,review) {
+async function addReview(userId,restaurantId,name,like,review) {
     const restaurantsCollection=await requiredRestaurant();
+    const usersCollection = await requiredUsers();
+    const theUser = await usersCollection.findOne({_id: ObjectId(userId)});
     const theRestaurant=await restaurantsCollection.findOne({_id: ObjectId(restaurantId)});
     if (!theRestaurant) throw "Restaurant not found.";
     let theReview={
@@ -209,11 +235,21 @@ async function addReview(restaurantId,name,like,review) {
         reviewer_like:like,
         review:review
     };
- 
+    let userReivew={
+        restaurantID:restaurantId,
+        reviewID:theReview._id,
+        reviewer_name:theUser.local.email,
+        reviewer_like:like,
+        review:review
+    }
     let newReview={
         $push: {R_review: theReview}  
     };
-    await restaurantsCollection.updateOne({_id: ObjectId(restaurantId)},newReview);   
+    let newUserReview={
+        $push: {reviews: userReivew}  
+    };
+    await restaurantsCollection.updateOne({_id: ObjectId(restaurantId)},newReview);  
+    await usersCollection.updateOne({_id: ObjectId(userId)},newUserReview);       
     return theReview;
 }
 
@@ -257,4 +293,4 @@ async function deleteReview(id){
     return "{delete review:true}";
 }
 
-module.exports={addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};
+module.exports={getReviewsByUserId,addRatingForAll,getRating,getReviewsByRestaurantId,getReviewByreviewId,getSandwiches,getCoffeeAndTea,getItalian,getBranch,getAmerican,getChinese,getDelis,getPizza,getBars,getAverageLike,classifyCuisines,gatherCuisines,mappingCuisines,addReview,updateReview,deleteReview};

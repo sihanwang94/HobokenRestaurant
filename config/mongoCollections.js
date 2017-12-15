@@ -1,5 +1,6 @@
 const dbConnection = require("./mongoConnection");
 
+
 /* This will allow you to have one reference to each collection per app */
 const getCollectionFn = collection => {
   let _col = undefined;
@@ -15,5 +16,6 @@ const getCollectionFn = collection => {
 };
 
 module.exports = {
-    restaurants: getCollectionFn("restaurants")
+    restaurants: getCollectionFn("restaurants"),
+    users:getCollectionFn("users")
 };

@@ -1,15 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
+<link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
     <style>
       .jumbotron{
           background: #16543f1f; 
@@ -32,55 +21,58 @@
         text-align: center;
         background: #1654443b; 
       }
-      
+      .color{
+        color: #4d5c37;
+      }
     </style>
-  </head>
+
   <body>
 
     {{>header}}
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
+      <h1>All type</h1>
         <div class="container-fluid text-center">
             <div class="row">
               <div class="col-sm-4 classify">
                 <span  class="glyphicon glyphicon-circle-arrow-down logo" ></span>
-                <h4><a href="/reviews/cuisine/sandwiches" class="everycuisine">Sandwiches</a></h4>
+                <h2><a href="/reviews/cuisine/sandwiches" class="everycuisine">Sandwiches</a></h2>
               </div>
               <div class="col-sm-4 classify">
                 <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/american" class="everycuisine">American</a></h4>
+                <h2><a href="/reviews/cuisine/american" class="everycuisine">American</a></h2>
               </div>
               <div class="col-sm-4 classify">
                 <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/bars" class="everycuisine">Bars</a></h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4 classify">
-                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/branch" class="everycuisine">Branch</a></h4>
-              </div>
-              <div class="col-sm-4 classify">
-                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/coffeeAndTea" class="everycuisine">Coffee & Tea</a></h4>
-              </div>
-              <div class="col-sm-4 classify">
-                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/delis" class="everycuisine">Delis</a></h4>
+                <h2><a href="/reviews/cuisine/bars" class="everycuisine">Bars</a></h2>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-4 classify">
                 <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/italian" class="everycuisine">Italian</a></h4>
+                <h2><a href="/reviews/cuisine/branch" class="everycuisine">Branch</a></h2>
               </div>
               <div class="col-sm-4 classify">
                 <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/pizza" class="everycuisine">Pizza</a></h4>
+                <h2><a href="/reviews/cuisine/coffeeAndTea" class="everycuisine">Coffee & Tea</a></h2>
               </div>
               <div class="col-sm-4 classify">
                 <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
-                <h4><a href="/reviews/cuisine/chinese" class="everycuisine">Chinese</a></h4>
+                <h2><a href="/reviews/cuisine/delis" class="everycuisine">Delis</a></h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h2><a href="/reviews/cuisine/italian" class="everycuisine">Italian</a></h2>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h2><a href="/reviews/cuisine/pizza" class="everycuisine">Pizza</a></h2>
+              </div>
+              <div class="col-sm-4 classify">
+                <span class="glyphicon glyphicon-circle-arrow-down logo"></span>
+                <h2><a href="/reviews/cuisine/chinese" class="everycuisine">Chinese</a></h2>
               </div>
             </div>
         </div>
@@ -93,11 +85,11 @@
               <div class="col-md-6">
                 <div class="panel">
                   <a href="/restaurants/{{this._id}}" class="name">
-                    <h4><span class="glyphicon glyphicon-cutlery"></span> {{this.R_name}}</h4> 
+                    <h2><span class="glyphicon glyphicon-cutlery"></span> {{this.R_name}}</h2> 
                   </a>
                   <p>{{this.R_location}}</p>
                   <p>{{this.R_cuisine}}</p>
-                  <a class="btn name" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
+                  <a class="btn name color" href="/restaurants/{{this._id}}" role="button">View details &raquo;</a></p>     
                 </div>
               </div>
             {{/each}}
@@ -110,4 +102,4 @@
     </div> 
 
   </body>
-</html>
+

@@ -5,11 +5,41 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
-    <style>
-        body         { padding-top:80px; word-wrap:break-word; }
-    </style>
+    <link  rel="stylesheet" href="../../public/css/loginSignup.css" type="text/css">
+
 </head>
 <body>
+     <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Hoboken Restaurant</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/reviews/cuisine">CUISINE</a></li>
+        <li><a href="/reviews/rating">RATING</a></li>
+        <li><a href="/reviews/nearby">NEARBY</a></li>
+        <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> &nbsp;PROFILE</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">ACCOUNT
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="list"><a href="/login"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;LOG IN</a></li>
+            <li class="list"><a href="/signup"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;SIGN UP</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ 
 <div class="container">
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
@@ -22,90 +52,45 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h2><span class="fa fa-user"></span> Local</h2>
 
                 {{#if user.local.email}}
                 <p>
                     <strong>id</strong>: {{user._id}}<br>
-                    <strong>email</strong>: {{user.local.email}}<br>
+                    <strong>username</strong>: {{user.local.email}}<br>
                     <strong>password</strong>: {{user.local.password }}
                 </p>
                 
-                <a href="/unlink/local" class="btn btn-default">Unlink</a>
-           {{else}}
-           <a href="/connect/local" class="btn btn-default">Connect Local</a>
               {{/if}}
 
 
             </div>
         </div>
 
-        <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                {{#if user.facebook.token}}
-                    <p>
-                        <strong>id</strong>: {{user.facebook.id}}<br>
-                        <strong>token</strong>: {{user.facebook.token}}<br>
-                        <strong>email</strong>: {{user.facebook.email}}<br>
-                        <strong>name</strong>: {{user.facebook.name}}<br>
-                    </p>
-
-                    <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
-                {{else}}
-                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
-                {{/if}}
-
-            </div>
-        </div>
+       
     </div>
-    <div class="row">
+        <div class="container frame">
+        <h2 class="text-center">My Reviews</h2>
+       
+        </br>
 
-        <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
 
-                {{#if user.twitter.token }}
-                    <p>
-                        <strong>id</strong>: {{user.twitter.id}}<br>
-                        <strong>token</strong>: {{user.twitter.token}}<br>
-                        <strong>display name</strong>: {{user.twitter.displayName}}<br>
-                        <strong>username</strong>: {{user.twitter.username}}
-                    </p>
-
-                    <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
-                {{else}}
-                    <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
-                {{/if}}
-
+        <div class="row">
+            
+           {{#each reviews}}
+           <div class="well">
+                <div class="singleReview">
+                    <p class="red"> <i class="fa fa-cutlery" aria-hidden="true"></i>&nbsp; {{this.restaurantName}} </p>
+                    <p class="red"><span class="glyphicon glyphicon-star-empty"></span> &nbsp; {{this.reviewer_like}} </p>
+                    <div class="certainReview"><p ><span class="glyphicon glyphicon-pencil red"> </span>&nbsp; {{this.review}} </p></div>
+                </div>
             </div>
+            {{/each}}
+           
         </div>
-
-        <!-- GOOGLE INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
-
-                {{#if user.google.token}}
-                    <p>
-                        <strong>id</strong>: {{user.google.id}}<br>
-                        <strong>token</strong>: {{user.google.token}}<br>
-                        <strong>email</strong>: {{user.google.email}}<br>
-                        <strong>name</strong>: {{user.google.name }}
-                    </p>
-
-                    <a href="/unlink/google" class="btn btn-danger">Unlink</a>
-                {{else}}
-                    <a href="/connect/google" class="btn btn-danger">Connect Google</a>
-                {{/if}}
-
-            </div>
-        </div>
-    </div>
+      
+        {{>footer}} 
+    </div> 
 
 
 
