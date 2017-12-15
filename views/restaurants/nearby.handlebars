@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="en">
+  <!doctype html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +21,19 @@
       <div class="container">
          <p><a class="btn btn-lg learnmore" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
       </div>
+     </div>
+     
+
+    <div class="container">
+      <div id="map" style="height:600px;width:100%;"> 
+  
+      </div>
+
+      {{>footer}}
     </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDg770LxmiVd3xLpzpS7kri_aD6fKc2Is&callback=myMap"></script>
+    <script src="../../public/js/nearby.js"></script>
+   
   </body>
 </html>

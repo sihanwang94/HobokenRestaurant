@@ -37,6 +37,8 @@
               <li class="list-group-item"><h5 class="red"> <span class="glyphicon glyphicon-heart"></span> &nbsp;&nbsp;{{this}}</h5></li>
            {{/each}}
         </ul>
+        <a class="btn btn-primary" href="/restaurants/addReview/{{restaurant._id}}" role="button"><span class="glyphicon glyphicon-pencil red"></span>Add Review</a>
+
 
         <div class="row">
            {{#each restaurant.R_review}}

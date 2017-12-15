@@ -1,10 +1,10 @@
 const mongoCollections=require("../config/mongoCollections");
 const requiredRestaurant=mongoCollections.restaurants;
+const requiredUsers =mongoCollections.users;
 const restaurants=require("./restaurants");
 const ObjectId = require('mongodb').ObjectId;
 const HashMap = require('hashmap');
-
-
+   
 //filter: get all reviews for the restaurant
 async function getReviewsByRestaurantId(restaurantId) {
     if(restaurantId===undefined) throw "Please provide an restaurantId.";
@@ -171,6 +171,7 @@ async function gatherCuisines(){
     return result; 
 }
 
+
 async function getReviewByreviewId(id) {
     if(id===undefined) throw "Please provide an id.";
     const restaurantsCollection=await requiredRestaurant();
@@ -199,8 +200,10 @@ async function getReviewByreviewId(id) {
     
 }
 
-async function addReview(restaurantId,name,like,review) {
+async function addReview(userId,restaurantId,name,like,review) {
     const restaurantsCollection=await requiredRestaurant();
+    const usersCollection = await requiredUsers();
+    const theUser = await usersCollection.findOne({_id: ObjectId(userId)});
     const theRestaurant=await restaurantsCollection.findOne({_id: ObjectId(restaurantId)});
     if (!theRestaurant) throw "Restaurant not found.";
     let theReview={
@@ -209,11 +212,21 @@ async function addReview(restaurantId,name,like,review) {
         reviewer_like:like,
         review:review
     };
- 
+    let userReivew={
+        restaurantID:restaurantId,
+        reviewID:theReview._id,
+        reviewer_name:theUser.local.email,
+        reviewer_like:like,
+        review:review
+    }
     let newReview={
         $push: {R_review: theReview}  
     };
-    await restaurantsCollection.updateOne({_id: ObjectId(restaurantId)},newReview);   
+    let newUserReview={
+        $push: {reviews: userReivew}  
+    };
+    await restaurantsCollection.updateOne({_id: ObjectId(restaurantId)},newReview);  
+    await usersCollection.updateOne({_id: ObjectId(userId)},newUserReview);       
     return theReview;
 }
 

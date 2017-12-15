@@ -6,6 +6,7 @@ module.exports = function(app, passport) {
     
     // normal routes ===============================================================
         // show the home page (will also have our login links)
+
         app.get('/', async function(req, res) {
             try{
                 const theRestaurants=await restaurantsData.getSome();

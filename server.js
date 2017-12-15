@@ -13,11 +13,11 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-var configDB = require('./config/database.js');
+const settings = require("./config/settings");
+const mongoConfig = settings.mongoConfig;
 const exphbs = require("express-handlebars");
 const Handlebars = require("handlebars");
 const statics = express.static(__dirname + '/public');
-
 
 const handlebarsInstance = exphbs.create({
     defaultLayout: "main",
@@ -45,7 +45,7 @@ const handlebarsInstance = exphbs.create({
     next();
   };
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(mongoConfig.serverUrl+mongoConfig.database); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
