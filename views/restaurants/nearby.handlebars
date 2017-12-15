@@ -25,14 +25,18 @@
      
 
     <div class="container">
-      <div id="map" style="height:600px;width:100%;"> 
-  
+      
+       <div id="map_canvas" style="height:600px;width:100%;"> 
+       {{#each theRestaurants}}
+        <p id="locationId">{{this.R_location}}</p>
+       {{/each}}
       </div>
 
       {{>footer}}
     </div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDg770LxmiVd3xLpzpS7kri_aD6fKc2Is&callback=myMap"></script>
+    
+    
+    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDg770LxmiVd3xLpzpS7kri_aD6fKc2Is"></script>
     <script src="../../public/js/nearby.js"></script>
    
   </body>

@@ -1,7 +1,3 @@
-// server.js
-
-// set up ======================================================================
-// get all the tools we need
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 3000;
@@ -44,6 +40,7 @@ const handlebarsInstance = exphbs.create({
     // let the next middleware run:
     next();
   };
+  
 // configuration ===============================================================
 mongoose.connect(mongoConfig.serverUrl+mongoConfig.database); // connect to our database
 

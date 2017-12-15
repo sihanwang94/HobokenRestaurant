@@ -51,6 +51,15 @@ router.get("/rating", async (req,res)=>{
     } 
 });
 
+// router.get("/addReview/:id",async (req,res)=>{
+//     try{
+//         if(req.user) res.render('../views/restaurants/reviewform',{user: req.user,restaurantId:req.params.id});  
+//         else res.redirect('/login');        
+//     }catch(e){
+//         console.log(e);
+//         res.redirect('/');
+//     } 
+// });
 router.get("/nearby", async (req,res)=>{
     try{
         const theRestaurants=await restaurantsData.getAllRestaurants();
