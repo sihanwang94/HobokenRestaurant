@@ -1,6 +1,8 @@
 const router=require("express").Router();
 const data=require("../data");
 const restaurantsData=data.restaurants;
+const reviewsData=data.reviews;
+
 
 module.exports = function(app, passport) {
     
@@ -20,10 +22,17 @@ module.exports = function(app, passport) {
         });
     
         // PROFILE SECTION =========================
-        app.get('/profile', isLoggedIn, function(req, res) {
-            res.render('profile', {
-                user : req.user
-            });
+        app.get('/profile', isLoggedIn, async function(req, res) {
+            try{
+                const reviews = await reviewsData.getReviewsByUserId(req.user._id)
+                res.render('profile', {
+                    user : req.user,
+                    reviews:reviews
+                });
+                }catch(e){
+                    console.log(e);
+                    res.redirect('/');
+                }
         });
     
         // LOGOUT ==============================
@@ -60,22 +69,6 @@ module.exports = function(app, passport) {
             app.post('/signup', passport.authenticate('local-signup', {
                 successRedirect : '/profile', // redirect to the secure profile section
                 failureRedirect : '/signup', // redirect back to the signup page if there is an error
-                failureFlash : true // allow flash messages
-            }));
-    
-
-    
-    // =============================================================================
-    // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
-    // =============================================================================
-    
-        // locally --------------------------------
-            app.get('/connect/local', function(req, res) {
-                res.render('connect-local', { message: req.flash('loginMessage') });
-            });
-            app.post('/connect/local', passport.authenticate('local-signup', {
-                successRedirect : '/profile', // redirect to the secure profile section
-                failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
                 failureFlash : true // allow flash messages
             }));
     

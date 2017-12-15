@@ -39,6 +39,25 @@
 
        
     </div>
+        <div class="container frame">
+        <h2 class="text-center">My Reviews</h2>
+       
+        </br>
+
+
+        <div class="row">
+           {{#each reviews}}
+                <div class="singleReview">
+                    <p class="red"> <span class="glyphicon glyphicon-user"></span> &nbsp; {{this.restaurantName}} </p>
+                    <p class="red"><span class="glyphicon glyphicon-star-empty"></span> &nbsp; {{this.reviewer_like}} </p>
+                    <div class="certainReview"><p ><span class="glyphicon glyphicon-pencil red"> </span>&nbsp; {{this.review}} </p></div>
+                    <button class="more btn-sm">MORE &raquo;</button>
+                </div>
+            {{/each}}
+        </div>
+      
+        {{>footer}} 
+    </div> 
 
 
 
