@@ -76,7 +76,7 @@ module.exports = function(app, passport) {
                 failureFlash : true // allow flash messages
             }));
     
-    
+        }
     
     
     // route middleware to ensure user is logged in
