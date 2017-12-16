@@ -1,7 +1,5 @@
 const router=require("express").Router();
 const reviewsData=require("../data/reviews");
-const xss=require("xss");
-
 
 router.get("/", async (req,res)=>{
     res.status(200).send("Review root");

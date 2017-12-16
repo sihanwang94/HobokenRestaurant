@@ -6,17 +6,8 @@ const ObjectId = require('mongodb').ObjectId;
 const HashMap = require('hashmap');
 
 async function getReviewsByUserId(userId) {
-    if(userId===undefined) throw "Please provide an restaurantId.";
-    const usersCollection=await requiredUsers();
-    const theUser=await usersCollection.findOne({_id:ObjectId(userId)});
-    const theReviews=theUser.reviews;
-    const restaurantsCollection=await requiredRestaurant();
-    if(!theUser || theUser===null) throw "No restaurant with that restaurantId."
-
-    if(!theUser || theUser===null) throw "No restaurant with that restaurantId.";
     if(userId===undefined) throw "Please provide an userId.";
     const usersCollection=await requiredUsers();
-
     const theUser=await usersCollection.findOne({_id:ObjectId(userId)});
     const theReviews=theUser.reviews;
     const restaurantsCollection=await requiredRestaurant();
