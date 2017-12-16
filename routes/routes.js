@@ -31,6 +31,15 @@ module.exports = function(app, passport) {
                     user : req.user,
                     reviews:reviews
                 });
+                if(!reviews){
+                    res.render('profile',{user : req.user})
+                }else{
+                    res.render('profile', {
+                        user : req.user,
+                        reviews:reviews
+                    });
+                }
+
                 }catch(e){
                     console.log(e);
                     res.redirect('/');
@@ -139,6 +148,11 @@ module.exports = function(app, passport) {
     };
     
 
+   
+    
+    
+    
+    };
     
     // route middleware to ensure user is logged in
     function isLoggedIn(req, res, next) {
