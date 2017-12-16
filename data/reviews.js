@@ -12,6 +12,8 @@ async function getReviewsByUserId(userId) {
     const theReviews=theUser.reviews;
     const restaurantsCollection=await requiredRestaurant();
     if(!theUser || theUser===null) throw "No restaurant with that restaurantId."
+
+    if(!theUser || theUser===null) throw "No restaurant with that restaurantId.";
     if(userId===undefined) throw "Please provide an userId.";
     const usersCollection=await requiredUsers();
 
