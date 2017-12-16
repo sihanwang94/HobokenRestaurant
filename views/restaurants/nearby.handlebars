@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <!doctype html>
@@ -13,9 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link  rel="stylesheet" href="../../public/css/restaurants.css" type="text/css"> 
-    <link  rel="stylesheet" href="../../public/css/restaurants.css" type="text/css"> 
     <link  rel="stylesheet" href="../../public/css/headerNav.css" type="text/css">
-
+  </head>
 
   <body>
     {{>header}}
@@ -29,20 +27,22 @@
     <div class="container">
       
        <div id="map_canvas" style="height:600px;width:100%;"> 
-       {{#each theRestaurants}}
-        <p id="locationId" >{{this.R_location}}</p>
-        <p id="locationName" >{{this.R_name}}</p>
-       {{/each}}
+        {{#if theRestaurants}} 
+          {{#each theRestaurants}}
+            <p id="locationId{{@index}}" >{{this.R_location}}</p>
+            <p id="locationName{{@index}}">{{this.R_name}}</p>
+          {{/each}}
+            <p id="arrayLength">{{theRestaurants.length}}</p>
+        {{/if}}
+        
       </div>
 
       {{>footer}}
     </div>
     
     
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDg770LxmiVd3xLpzpS7kri_aD6fKc2Is"></script>
+    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwQhgCXQI5ELmiH6wu-O-MqQN26CQToco"></script>
     <script src="../../public/js/nearby.js"></script>
    
   </body>
-
 </html>
-

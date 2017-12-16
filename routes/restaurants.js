@@ -8,8 +8,10 @@ router.get("/", async (req,res)=>{
     try{
         const theRestaurants=await restaurantsData.getSome();
         res.render('./restaurants/restaurants', {
-            theRestaurants:theRestaurants
-        });   
+            theRestaurants:theRestaurants,
+            R_location:theRestaurants.R_location
+        });  
+         
     }catch(e){
         console.log(e);
         res.redirect('/restaurants');
