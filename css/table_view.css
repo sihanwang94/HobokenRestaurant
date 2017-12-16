@@ -1,0 +1,97 @@
+
+.table_view {
+    position: relative;
+    visibility: hidden;
+}
+
+.table_view,.table_view:before,.table_view :after,
+.table_view *,.table_view *:before,.table_view *:after {
+    box-sizing: border-box;
+}
+
+.table_view.table_view_init {
+    visibility: visible;
+}
+
+.table_view_hd {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    background-image: linear-gradient(#fff,#f7f6f5);
+    background-image: -webkit-linear-gradient(#fff,#f7f6f5);
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.table_view_bd {
+    overflow: auto;
+    border: 1px solid #ddd;
+}
+
+.table_view .table_hd {
+    cursor: default;
+    position: relative;
+}
+
+.table_view .table_bd {
+}
+
+.table_view .table_hd,
+.table_view .table_bd {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+}
+
+.table_view .table_hd > thead > tr > th,
+.table_view .table_hd > thead > tr > td,
+.table_view .table_bd > tbody > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    word-break: break-all;
+    position: relative;
+}
+
+.table_view .table_hd > thead > tr > th,
+.table_view .table_hd > thead > tr > td,
+.table_view .table_bd > tbody > tr > td {
+    border: 1px solid #ddd;
+}
+
+
+.table_view .table_hd > thead > tr > th,
+.table_view .table_hd > thead > tr > td,
+.table_view .table_bd > tbody > tr:first-child > td {
+    border-top:none;
+}
+
+.table_view .table_hd > thead > tr > th,
+.table_view .table_hd > thead > tr > td,
+.table_view .table_bd > tbody > tr:last-child > td {
+    border-bottom:none;
+}
+
+.table_view .table_hd > thead > tr > th:first-child,
+.table_view .table_hd > thead > tr > td:first-child,
+.table_view .table_bd > tbody > tr > td:first-child {
+    border-left:none;
+}
+
+.table_view .table_hd > thead > tr > th:last-child,
+.table_view .table_hd > thead > tr > td:last-child,
+.table_view .table_bd > tbody > tr > td:last-child {
+    border-right:none;
+}
+
+.table_view .table_hd > thead > tr > th,
+.table_view .table_hd > thead > tr > td {
+    text-align: center;
+}
+
+.table_view .table_bd > tbody > tr.selected,
+.table_view .table_bd > tbody > tr:hover {
+    background-color: #f2f2f2;
+}
