@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/cs546project/hobokenRest/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/cs546project/hobokenRest/css/font-awesome.css"/>
+    <link rel="stylesheet" href="/cs546project/hobokenRest/css/reset.css"/>
+    <link rel="stylesheet" href="/cs546project/hobokenRest/css/zxx.lib.css"/>
+    <link rel="stylesheet" href="/cs546project/hobokenRest/css/page_view.css"/>
+    <link rel="stylesheet" href="/cs546project/hobokenRest/css/sort_view.css"/>
+    <style type="text/css">
+
+        .rest-list-wrap {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        #rest_wrap {
+            margin: 10px auto;
+            width: 1000px;
+            border: 1px dashed #ccc;
+            padding: 10px;
+        }
+
+        .rest-entry {
+            padding: 20px 0;
+        }
+
+        .rest-entry + .rest-entry {
+            border-top: 1px dashed #ccc;
+        }
+
+        .diggit {
+            color: #075db3;
+            text-decoration: none;
+            display: block;
+            float: left;
+            width: 46px;
+            text-align: center;
+            margin-top: 1px;
+        }
+
+        .diggit:hover {
+            color: #075db3;
+            text-decoration: none;
+        }
+
+        .diggit-num {
+            border-radius: 2px;
+            line-height: 30px;
+            display: block;
+            background-color: #FFF5D2;
+        }
+
+        .diggit-text {
+            margin-top: 2px;
+            line-height: 20px;
+            display: block;
+            background-color: #F1F8FA;
+        }
+
+        .h50 {
+            height: 50px;
+        }
+
+        .rest-title,
+        .rest-local {
+            text-decoration: underline;
+            color: #105cb6;
+        }
+
+        .rest-title:visited,
+        .rest-local:visited {
+            text-decoration: underline;
+            color: #551a8b;
+        }
+
+        .rest-title:hover,
+        .rest-local:hover {
+            text-decoration: underline;
+            color: red;
+        }
+
+        .rest-stas {
+            color: #555;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .rest-stas:visited {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .rest-stas:hover {
+            color: #555;
+            text-decoration: none;
+        }
+    </style>
+    <title>TEST</title>
+</head>
+<body>
+<div id="log_wrap">
+    
+    <div id="log">
+
+    </div>
+</div>
+<div id="blog_list" class="blog-list-wrap">
+    <div>按住shift键，再点击排序项，最后松开shift键，可进行多列排序</div>
+    <div id="sort_view" class="btn-group sort_view">
+        <button type="button" data-field="name" class="btn btn-default sort_item ">name <i class="sort_icon"></i></button>
+        <button type="button" data-field="sales" class="btn btn-default sort_item ">cuisine <i class="sort_icon"></i></button>
+        <button type="button" data-field="time" class="btn btn-default sort_item">price <i class="sort_icon"></i></button>
+    </div>
+    <ul class="rest-list data_list">
+    </ul>
+</div>
+<script src="/cs546project/hobokenRest/lib/sea.js"></script>
+<script src="/cs546project/hobokenRest/common.js"></script>
+<script>
+    seajs.use('app/listView_1.js');
+</script>
+</body>
+</html>
