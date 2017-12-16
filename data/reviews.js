@@ -282,7 +282,7 @@ async function deleteReview(id){
         const theReviews =await getReviewsByRestaurantId(theRestaurants[i]._id);
         if (!theReviews) throw "No reviews found.";
         for(let j=0;j<theReviews.length;j++){
-            if(theReviews[j]._id===ObjectId(id)){
+            if(theReviews[j]._id===id){
                 let deleteReviewInRestaurant=await restaurantsCollection.update(
                     {_id:theRestaurants[i]._id},
                     {$pull:{'R_review':{_id:ObjectId(id)}}}

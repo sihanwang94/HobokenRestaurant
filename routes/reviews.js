@@ -1,5 +1,6 @@
 const router=require("express").Router();
 const reviewsData=require("../data/reviews");
+const restaurantsData=require("../data/restaurants");
 
 router.get("/", async (req,res)=>{
     res.status(200).send("Review root");
@@ -51,9 +52,13 @@ router.get("/rating", async (req,res)=>{
 
 router.get("/nearby", async (req,res)=>{
     try{
-        res.send("nearby");
+        const theRestaurants=await restaurantsData.getAllRestaurants();
+        res.render('../views/restaurants/nearby', {
+            theRestaurants:theRestaurants
+        });
     }catch(e){
-        res.status(500).json({error:e});
+        console.log(e);
+        res.redirect('/');
     } 
 });
 
