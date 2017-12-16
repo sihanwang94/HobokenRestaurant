@@ -6,3 +6,23 @@
 * Use command below to reprocessd data
 
 `node processdata.js`
+
+
+* Error Check 
+Sign up:
+Confirm Password
+Check existed username
+
+Sign up:
+Check if username and password correct
+
+* ajax
+Add review
+Nearby
+
+* xss
+Input script
+e.g. `<script>alert("You are under attack")</script>`
+will not pop up window.
+
+
