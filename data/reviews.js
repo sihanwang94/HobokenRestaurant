@@ -11,6 +11,8 @@ async function getReviewsByUserId(userId) {
     const theUser=await usersCollection.findOne({_id:ObjectId(userId)});
     const theReviews=theUser.reviews;
     const restaurantsCollection=await requiredRestaurant();
+    if(!theUser || theUser===null) throw "No restaurant with that restaurantId."
+
     if(!theUser || theUser===null) throw "No restaurant with that restaurantId.";
     if(userId===undefined) throw "Please provide an userId.";
     const usersCollection=await requiredUsers();
@@ -20,7 +22,6 @@ async function getReviewsByUserId(userId) {
     const restaurantsCollection=await requiredRestaurant();
     if(!theUser || theUser===null) throw "No user with that userId.";
     if(!theReviews || theReviews===null) return null;
-
     const result=[];
     for(let i=0;i<theReviews.length;i++){
         var theRestaurant=await restaurantsCollection.findOne({_id:ObjectId(theReviews[i].restaurantID)});

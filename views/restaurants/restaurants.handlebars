@@ -7,7 +7,7 @@
 
     <div class="jumbotron">
       <div class="container">
-        <p><a class="btn btn-lg learnmore" href="/restaurants/all" role="button">Learn more &raquo;</a></p>
+        <p><a href="/restaurants/all" ><span class="btn btn-lg learnmore btn-lg">Learnmore</span></a></p>
       </div>
     </div>
 
@@ -17,10 +17,10 @@
             {{#each theRestaurants}}
             <div class="single">
                 <div class="bodyImage">
-                    <h3> 
-                      <img src="../../public/image/restaurant.png" width="30" height="30" align="right"> 
+                    <h1> 
+                      <img src="../../public/image/restaurant.png" alt="Image description"width="30" height="30" align="right"> 
                       <a class="title" href="/restaurants/{{this._id}}"> {{this.R_name}} </a>
-                    </h3>
+                    </h1>
                 </div>
                 
                 <p>
